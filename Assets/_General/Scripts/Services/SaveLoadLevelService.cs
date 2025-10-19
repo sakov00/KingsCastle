@@ -58,7 +58,7 @@ namespace _General.Scripts.Services
             await using var stream = new MemoryStream();
             await MemoryPackSerializer.SerializeAsync(stream, _appData.LevelData);
             byte[] serializedData = stream.ToArray();
-            var compressedAsync = LZ4Pickler.Pickle(serializedData);
+            var compressedAsync = LZ4Pickler.Pickle(serializedData, LZ4Level.L12_MAX);
             await File.WriteAllBytesAsync(path, compressedAsync);
             
             Debug.Log($"Level saved to {path}");

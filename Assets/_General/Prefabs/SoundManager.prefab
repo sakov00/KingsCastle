@@ -182,8 +182,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1ed310930bf27c84596878b98983024f, type: 3}
   - key: 1
     clip: {fileID: 8300000, guid: b17d536018bae30438f1ef41f90d87e9, type: 3}
-  _sfxClips:
   - key: 2
+    clip: {fileID: 8300000, guid: b17d536018bae30438f1ef41f90d87e9, type: 3}
+  _sfxClips:
+  - key: 5
     clip: {fileID: 8300000, guid: dbd4da902887077419b5f3c56b1ef541, type: 3}
 --- !u!1 &5251900958488605687
 GameObject:

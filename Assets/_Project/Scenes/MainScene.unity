@@ -829,26 +829,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4278449796338587138, guid: eb1d0bd01ef0d3d40a42b1de840320af,
-        type: 3}
-      propertyPath: _musicClips.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4278449796338587138, guid: eb1d0bd01ef0d3d40a42b1de840320af,
-        type: 3}
-      propertyPath: _sfxClips.Array.data[0].key
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4278449796338587138, guid: eb1d0bd01ef0d3d40a42b1de840320af,
-        type: 3}
-      propertyPath: _musicClips.Array.data[2].key
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4278449796338587138, guid: eb1d0bd01ef0d3d40a42b1de840320af,
-        type: 3}
-      propertyPath: _musicClips.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b17d536018bae30438f1ef41f90d87e9, type: 3}
     - target: {fileID: 7354675109409277857, guid: eb1d0bd01ef0d3d40a42b1de840320af,
         type: 3}
       propertyPath: m_LocalPosition.x
