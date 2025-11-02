@@ -108,39 +108,8 @@ namespace _Project.Scripts.GameObjects.Additional.LevelEnvironment.Terrain
             _meshCollider.sharedMesh = null;
             _meshCollider.sharedMesh = _meshFilter.mesh;
             
-            if (_meshSurface.navMeshData == null)
-            {
-                _meshSurface.navMeshData = new NavMeshData();
-                NavMesh.AddNavMeshData(_meshSurface.navMeshData, _meshSurface.transform.position, _meshSurface.transform.rotation);
-            }
-            
-            var sources = new List<NavMeshBuildSource>();
-            var markups = new List<NavMeshBuildMarkup>();
-            
-            NavMeshBuilder.CollectSources(
-                null,
-                _meshSurface.layerMask,
-                _meshSurface.useGeometry,
-                _meshSurface.defaultArea,
-                markups,
-                sources
-            );
-
-            var bounds = new Bounds(sources[0].shape == NavMeshBuildSourceShape.Mesh ? _meshFilter.mesh.bounds.center : Vector3.zero, Vector3.zero);
-            foreach (var src in sources)
-            {
-                if (src.shape == NavMeshBuildSourceShape.Mesh)
-                    bounds.Encapsulate(_meshFilter.mesh.bounds);
-            }
-
-            var buildSettings = _meshSurface.GetBuildSettings();
-
-            await NavMeshBuilder.UpdateNavMeshDataAsync(
-                _meshSurface.navMeshData,
-                buildSettings,
-                sources,
-                bounds
-            );
+            await UniTask.Yield();
+            _meshSurface.BuildNavMesh();
         }
 
         private float GetAreaValue()

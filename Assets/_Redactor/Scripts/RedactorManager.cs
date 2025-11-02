@@ -36,7 +36,7 @@ namespace _Redactor.Scripts
             SetSavableData();
             await ResetService.ResetLevel();
             await SaveLoadLevelService.LoadLevelDefault(levelIndex);
-            await SceneCreator.InstantiateObjects(AppData.LevelData.SavableModels, isInitialize);
+            await SceneCreator.InstantiateObjects(AppData.LevelData.SavableModels, true);
         }
         
         public void SaveLevel(int levelIndex)
