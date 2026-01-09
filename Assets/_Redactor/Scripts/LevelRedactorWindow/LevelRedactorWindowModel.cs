@@ -1,6 +1,5 @@
 using System;
-using _General.Scripts.UI.Windows;
-using _General.Scripts.UI.Windows.BaseWindow;
+using _Project.Scripts.UI.Windows.BaseWindow;
 
 namespace _Redactor.Scripts.LevelRedactorWindow
 {

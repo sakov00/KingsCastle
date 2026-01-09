@@ -2,7 +2,7 @@ using System;
 using _Project.Scripts.Enums;
 using UnityEngine;
 
-namespace _Project.Scripts.Interfaces.View
+namespace _Project.Scripts.Interfaces
 {
     public interface IFightView
     {

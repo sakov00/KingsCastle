@@ -1,17 +1,16 @@
-using System.Collections.Generic;
-using _General.Scripts._VContainer;
-using _General.Scripts.AllAppData;
-using _General.Scripts.DTO;
-using _General.Scripts.Enums;
-using _General.Scripts.Interfaces;
-using _General.Scripts.Registries;
+using _Project.Scripts._VContainer;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects.ActionSystems;
 using _Project.Scripts.Interfaces;
+using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using VContainer;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
+using Vector2Scaled = _Project.Scripts.DTO.Vector2Scaled;
+using Vector3Scaled = _Project.Scripts.DTO.Vector3Scaled;
 
 namespace _Project.Scripts.GameObjects.Additional.LevelEnvironment.Terrain
 {

@@ -1,5 +1,4 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.GameObjects.Concrete.FriendsBuild;
@@ -7,6 +6,7 @@ using _Project.Scripts.GameObjects.Concrete.MoneyBuild;
 using _Project.Scripts.GameObjects.Concrete.TowerDefence;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Abstract
 {

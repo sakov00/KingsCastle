@@ -1,8 +1,8 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.BuildingZone
 {

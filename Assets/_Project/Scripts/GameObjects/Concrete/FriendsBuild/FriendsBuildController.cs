@@ -1,5 +1,4 @@
-using _General.Scripts._GlobalLogic;
-using _General.Scripts.Interfaces;
+using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.Factories;
 using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.Abstract.Unit;
@@ -9,6 +8,7 @@ using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 using VContainer;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.FriendsBuild
 {

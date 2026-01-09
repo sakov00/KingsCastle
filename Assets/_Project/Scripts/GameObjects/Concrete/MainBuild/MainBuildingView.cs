@@ -1,7 +1,7 @@
 using System;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract;
-using _Project.Scripts.Interfaces.View;
+using _Project.Scripts.Interfaces;
 using UnityEngine;
 
 namespace _Project.Scripts.GameObjects.Concrete.MainBuild

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.FriendsGroup
 {

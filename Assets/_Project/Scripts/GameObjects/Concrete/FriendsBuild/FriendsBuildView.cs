@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using _General.Scripts.UI.Info;
 using _Project.Scripts.GameObjects.Abstract;
+using _Project.Scripts.UI.Info;
 using UnityEngine;
 
 namespace _Project.Scripts.GameObjects.Concrete.FriendsBuild

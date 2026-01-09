@@ -1,12 +1,12 @@
-using _General.Scripts._GlobalLogic;
-using _General.Scripts.AllAppData;
-using _General.Scripts.Interfaces;
+using _Project.Scripts._GlobalLogic;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.ActionSystems;
 using _Project.Scripts.Interfaces;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.Player
 {

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
-using _General.Scripts.DTO;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
+using SplineContainerData = _Project.Scripts.DTO.SplineContainerData;
+using Vector2Scaled = _Project.Scripts.DTO.Vector2Scaled;
+using Vector3Scaled = _Project.Scripts.DTO.Vector3Scaled;
 
 namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
 {

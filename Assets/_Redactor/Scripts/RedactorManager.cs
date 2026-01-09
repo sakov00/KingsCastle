@@ -1,9 +1,8 @@
 using System.Linq;
 using System.Threading;
-using _General.Scripts._VContainer;
-using _General.Scripts.Enums;
-using _General.Scripts.Interfaces;
 using _Project.Scripts;
+using _Project.Scripts.Enums;
+using _Project.Scripts.Interfaces;
 using _Redactor.Scripts.LevelRedactorWindow;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -20,8 +19,8 @@ namespace _Redactor.Scripts
         
         public override async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            WindowsManager.ShowFastWindow<LevelRedactorWindowPresenter>();
-            SetSavableData();
+            // WindowsManager.ShowFastWindow<LevelRedactorWindowPresenter>();
+            // SetSavableData();
         }
         
         public override async UniTask StartLevel(int levelIndex)

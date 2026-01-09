@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using _General.Scripts.Extentions;
+using _Project.Scripts.Extentions;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using UnityEngine;
 using UnityEngine.AI;

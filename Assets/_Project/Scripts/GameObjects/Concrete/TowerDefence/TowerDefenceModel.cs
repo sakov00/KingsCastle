@@ -1,12 +1,11 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.Interfaces;
-using _Project.Scripts.Interfaces.Model;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.TowerDefence
 {

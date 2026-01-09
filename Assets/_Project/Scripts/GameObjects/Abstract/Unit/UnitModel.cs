@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.GameObjects.Concrete.ArcherEnemy;
@@ -10,9 +9,9 @@ using _Project.Scripts.GameObjects.Concrete.Player;
 using _Project.Scripts.GameObjects.Concrete.WarriorEnemy;
 using _Project.Scripts.GameObjects.Concrete.WarriorFriend;
 using _Project.Scripts.Interfaces;
-using _Project.Scripts.Interfaces.Model;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Abstract.Unit
 {

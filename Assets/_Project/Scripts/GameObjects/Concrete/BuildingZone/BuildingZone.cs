@@ -1,15 +1,15 @@
 using System.Linq;
-using _General.Scripts._VContainer;
-using _General.Scripts.AllAppData;
-using _General.Scripts.Interfaces;
-using _General.Scripts.Registries;
+using _Project.Scripts._VContainer;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
+using _Project.Scripts.Registries;
 using _Project.Scripts.SO;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using VContainer;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.BuildingZone
 {

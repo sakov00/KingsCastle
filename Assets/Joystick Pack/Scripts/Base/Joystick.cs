@@ -1,5 +1,5 @@
-﻿using _General.Scripts._VContainer;
-using _General.Scripts.AllAppData;
+﻿using _Project.Scripts._VContainer;
+using _Project.Scripts.AllAppData;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VContainer;

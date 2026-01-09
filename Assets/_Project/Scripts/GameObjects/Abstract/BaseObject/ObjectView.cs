@@ -1,6 +1,6 @@
 using System;
-using _General.Scripts.UI.Info;
-using _Project.Scripts.Interfaces.View;
+using _Project.Scripts.UI.Info;
+using QuickOutline.Scripts;
 using UnityEngine;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject

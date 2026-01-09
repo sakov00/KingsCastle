@@ -1,6 +1,6 @@
 using System;
-using _General.Scripts._GlobalLogic;
-using _General.Scripts._VContainer;
+using _Project.Scripts._GlobalLogic;
+using _Project.Scripts._VContainer;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using UnityEngine;
 using VContainer;

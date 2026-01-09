@@ -1,8 +1,9 @@
 using System;
-using _General.Scripts.DTO;
-using _General.Scripts.Interfaces;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
+using Vector2Scaled = _Project.Scripts.DTO.Vector2Scaled;
+using Vector3Scaled = _Project.Scripts.DTO.Vector3Scaled;
 
 namespace _Project.Scripts.GameObjects.Additional.LevelEnvironment.Terrain
 {

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using _General.Scripts.CameraLogic;
+using _Project.Animation.CameraLogic;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.Concrete.FriendsGroup;
 using UnityEngine;

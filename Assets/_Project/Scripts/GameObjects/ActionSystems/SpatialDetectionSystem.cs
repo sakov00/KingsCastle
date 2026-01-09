@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using _General.Scripts.AllAppData;
-using _General.Scripts.Registries;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.Interfaces;
+using _Project.Scripts.Registries;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

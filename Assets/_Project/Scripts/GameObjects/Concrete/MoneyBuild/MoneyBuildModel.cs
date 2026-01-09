@@ -1,9 +1,9 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.Concrete.Player;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.MoneyBuild
 {

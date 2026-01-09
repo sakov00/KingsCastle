@@ -1,7 +1,7 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using MemoryPack;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.ArcherFriend
 {

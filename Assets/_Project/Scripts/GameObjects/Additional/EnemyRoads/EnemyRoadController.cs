@@ -1,20 +1,21 @@
 using System;
 using System.Collections.Generic;
-using _General.Scripts._GlobalLogic;
-using _General.Scripts._VContainer;
-using _General.Scripts.AllAppData;
-using _General.Scripts.DTO;
-using _General.Scripts.Enums;
-using _General.Scripts.Extentions;
-using _General.Scripts.Interfaces;
-using _General.Scripts.Registries;
+using _Project.Scripts._GlobalLogic;
+using _Project.Scripts._VContainer;
+using _Project.Scripts.AllAppData;
+using _Project.Scripts.Enums;
+using _Project.Scripts.Extentions;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
+using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Splines;
 using VContainer;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 using Random = UnityEngine.Random;
+using Vector2Scaled = _Project.Scripts.DTO.Vector2Scaled;
+using Vector3Scaled = _Project.Scripts.DTO.Vector3Scaled;
 
 namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
 {

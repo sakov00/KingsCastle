@@ -2,19 +2,16 @@ using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using _General.Scripts;
-using _General.Scripts._GlobalLogic;
-using _General.Scripts._VContainer;
-using _General.Scripts.AllAppData;
-using _General.Scripts.Enums;
-using _General.Scripts.Registries;
-using _General.Scripts.Services;
-using _General.Scripts.UI.Windows;
-using _General.Scripts.UI.Windows.GameWindow;
-using _General.Scripts.UI.Windows.LoadingWindow;
+using _Project.Scripts._GlobalLogic;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.ActionSystems;
+using _Project.Scripts.Registries;
+using _Project.Scripts.Services;
+using _Project.Scripts.UI.Windows;
+using _Project.Scripts.UI.Windows.GameWindow;
+using _Project.Scripts.UI.Windows.LoadingWindow;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -41,9 +38,9 @@ namespace _Project.Scripts
         
         public virtual async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            SoundManager.PlayMusicAsync(SoundKey.MenuMusic).Forget();
-            WindowsManager.ShowFastWindow<LoadingWindowPresenter>();
-            await StartLevel(AppData.User.CurrentLevel);
+            // SoundManager.PlayMusicAsync(SoundKey.MenuMusic).Forget();
+            // WindowsManager.ShowFastWindow<LoadingWindowPresenter>();
+            // await StartLevel(AppData.User.CurrentLevel);
         }
 
         public virtual async UniTask ResetRound()

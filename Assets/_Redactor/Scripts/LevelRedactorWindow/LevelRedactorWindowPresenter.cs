@@ -1,7 +1,4 @@
-using _General.Scripts.Enums;
-using _General.Scripts.Registries;
-using _General.Scripts.UI.Windows;
-using _General.Scripts.UI.Windows.BaseWindow;
+using _Project.Scripts.UI.Windows.BaseWindow;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;

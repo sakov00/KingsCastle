@@ -1,5 +1,4 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Concrete.ArcherEnemy;
 using _Project.Scripts.GameObjects.Concrete.ArcherFriend;
@@ -10,9 +9,9 @@ using _Project.Scripts.GameObjects.Concrete.Player;
 using _Project.Scripts.GameObjects.Concrete.TowerDefence;
 using _Project.Scripts.GameObjects.Concrete.WarriorEnemy;
 using _Project.Scripts.GameObjects.Concrete.WarriorFriend;
-using _Project.Scripts.Interfaces.Model;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 using UnitModel = _Project.Scripts.GameObjects.Abstract.Unit.UnitModel;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject

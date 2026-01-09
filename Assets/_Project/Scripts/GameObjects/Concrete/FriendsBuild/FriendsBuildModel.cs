@@ -1,11 +1,11 @@
 using System;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.Concrete.FriendsGroup;
 using _Project.Scripts.GameObjects.Concrete.MoneyBuild;
 using MemoryPack;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.FriendsBuild
 {

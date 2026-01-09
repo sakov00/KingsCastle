@@ -1,7 +1,7 @@
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 
-namespace _Project.Scripts.Interfaces.Model
+namespace _Project.Scripts.Interfaces
 {
     public interface IFightModel
     {

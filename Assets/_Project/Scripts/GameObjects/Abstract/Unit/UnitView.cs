@@ -1,7 +1,7 @@
 using System;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
-using _Project.Scripts.Interfaces.View;
+using _Project.Scripts.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 

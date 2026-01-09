@@ -1,13 +1,9 @@
-using _General.Scripts._VContainer;
-using _General.Scripts.Interfaces;
-using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.ActionSystems;
 using _Project.Scripts.Interfaces;
-using _Project.Scripts.Interfaces.Model;
-using _Project.Scripts.Interfaces.View;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.TowerDefence
 {

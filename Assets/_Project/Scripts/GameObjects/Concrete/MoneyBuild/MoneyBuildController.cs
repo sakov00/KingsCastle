@@ -1,8 +1,7 @@
-using _General.Scripts._VContainer;
-using _General.Scripts.Interfaces;
 using _Project.Scripts.GameObjects.Abstract;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.MoneyBuild
 {

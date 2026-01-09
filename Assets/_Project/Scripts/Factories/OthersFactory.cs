@@ -1,4 +1,3 @@
-using _General.Scripts.Registries;
 using _Project.Scripts.GameObjects.Concrete.BuildingZone;
 using _Project.Scripts.SO;
 using UnityEngine;

@@ -1,8 +1,8 @@
-using _General.Scripts.Interfaces;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.ActionSystems;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.ArcherEnemy
 {
