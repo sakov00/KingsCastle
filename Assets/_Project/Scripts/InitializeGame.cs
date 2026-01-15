@@ -1,9 +1,31 @@
+using System;
+using System.Threading;
+using _Project.Scripts._VContainer;
+using _Project.Scripts.UI.Windows;
+using _Project.Scripts.UI.Windows.LoadingWindow;
+using _Project.Scripts.UI.Windows.MainMenuWindow;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace _Project.Scripts
 {
-    public class InitializeGame : MonoBehaviour
+    public class InitializeGame : IInitializable, IAsyncStartable
     {
+        [Inject] private WindowsManager _windowsManager;
         
+        public void Initialize()
+        {
+            Application.targetFrameRate = 120;
+        }
+        
+        public async UniTask StartAsync(CancellationToken cancellation = default)
+        {
+            _windowsManager.ShowFastWindow<LoadingWindowPresenter>();
+            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
+            _windowsManager.ShowFastWindow<MainMenuWindowPresenter>();
+            _windowsManager.HideWindow<LoadingWindowPresenter>();
+        }
     }
 }

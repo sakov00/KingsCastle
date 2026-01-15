@@ -1,6 +1,5 @@
 using System;
 using _Project.Scripts.UI.Info;
-using QuickOutline.Scripts;
 using UnityEngine;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject

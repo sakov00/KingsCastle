@@ -153,3 +153,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82881
+  packageName: Lunar Mobile Console - FREE
+  packageVersion: 1.8.4
+  assetPath: Assets/LunarConsole/Editor/iOS/Common/Images/lunar_console_icon_settings@2x.png
+  uploadId: 731196

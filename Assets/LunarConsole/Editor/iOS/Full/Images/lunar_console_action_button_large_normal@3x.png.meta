@@ -153,3 +153,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82881
+  packageName: Lunar Mobile Console - FREE
+  packageVersion: 1.8.4
+  assetPath: Assets/LunarConsole/Editor/iOS/Full/Images/lunar_console_action_button_large_normal@3x.png
+  uploadId: 731196

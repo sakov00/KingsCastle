@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: WindowsConfig
   m_EditorClassIdentifier: 
   windowsList:
-  - {fileID: 6297949399978331918, guid: 8f642652600f38a418f2021060436551, type: 3}
-  - {fileID: 8954507623702955533, guid: ccd5fcaa13f5e954d852296f2024b3e2, type: 3}
-  - {fileID: 1141205079796394600, guid: 8969d26f96ac6aa409c50ac46d9bceb7, type: 3}
-  - {fileID: 75330004720683599, guid: 548bbf50320baa140a041e53346e4c1e, type: 3}
-  - {fileID: 105420395907749080, guid: 6feee6dc84bbca14f8907a2d4f4aa135, type: 3}
-  - {fileID: 6797241515997204101, guid: 12b37ffe3a8ee174b964b18e9d0ef24c, type: 3}
+  - {fileID: 6797241515997204101, guid: 6409c056070f6194dada5f1d5b48130b, type: 3}
+  - {fileID: 8370006358681895502, guid: 12b37ffe3a8ee174b964b18e9d0ef24c, type: 3}
+  - {fileID: 1367909721383882776, guid: b9e86200fc88f144a84ef14cfa277222, type: 3}

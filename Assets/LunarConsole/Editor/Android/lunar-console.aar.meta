@@ -30,3 +30,10 @@ PluginImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82881
+  packageName: Lunar Mobile Console - FREE
+  packageVersion: 1.8.4
+  assetPath: Assets/LunarConsole/Editor/Android/lunar-console.aar
+  uploadId: 731196

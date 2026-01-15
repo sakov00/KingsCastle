@@ -34,7 +34,7 @@ namespace _Project.Scripts._VContainer
             
             builder.Register<GameTimer>(Lifetime.Singleton).As<GameTimer, ITickable>();
             
-            RegisterGameManager(builder);
+            RegisterGame(builder);
             RegisterAppData(builder);
             RegisterWindows(builder);
             RegisterRegistries(builder);
@@ -44,8 +44,9 @@ namespace _Project.Scripts._VContainer
             RegisterServices(builder);
         }
 
-        protected virtual void RegisterGameManager(IContainerBuilder builder)
+        protected virtual void RegisterGame(IContainerBuilder builder)
         {
+            builder.Register<InitializeGame>(Lifetime.Singleton).AsSelf().As<IInitializable, IAsyncStartable>();
             builder.Register<GameManager>(Lifetime.Singleton).AsSelf().As<IInitializable, IAsyncStartable>();
         }
         

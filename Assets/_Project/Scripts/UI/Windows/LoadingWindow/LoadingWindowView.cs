@@ -1,6 +1,7 @@
-using _Project.Scripts.UI.UIEffects;
+using System;
 using _Project.Scripts.UI.Windows.BaseWindow;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace _Project.Scripts.UI.Windows.LoadingWindow
@@ -10,21 +11,41 @@ namespace _Project.Scripts.UI.Windows.LoadingWindow
         [Header("Presenter")]
         [SerializeField] private LoadingWindowPresenter _presenter;
 
-        [Header("UI Effects")]
-        [SerializeField] private RotateUIAroundPoint _rotateUIAroundPoint;
-
-        private Tween _tweenShow;
-        private Tween _tweenHide;
+        [Header("UI Elements")]
+        [SerializeField] private TMP_Text _loadingText;
         
-        private bool _isShowed;
+        [Header("Load Tween Settings")]
+        [SerializeField] private string _baseText = "Loading";
+        [SerializeField] private float _interval = 0.3f;
+        private int _dotsCount = 0;
+        
+        private Tween _loadTween;
+
+        private void StartLoadingTween()
+        {
+            _loadTween = DOTween.Sequence()
+                .AppendCallback(UpdateText)
+                .AppendInterval(_interval)
+                .SetLoops(-1);
+        }
+        
+        private void StopLoadingTween()
+        {
+            _loadTween.Kill();
+        }
+        
+        private void UpdateText()
+        {
+            _dotsCount = (_dotsCount + 1) % 4;
+            _loadingText.text = _baseText + new string('.', _dotsCount);
+        }
 
         public override Tween Show()
         {
             if(_isShowed == true) return _tweenShow;
-            
-            _isShowed = true;
-            _rotateUIAroundPoint.StartRotation();
-            _tweenShow = base.Show().OnComplete(() => _tweenShow = null);
+ 
+            StartLoadingTween();
+            base.Show();
             return _tweenShow;
         }
         
@@ -32,26 +53,21 @@ namespace _Project.Scripts.UI.Windows.LoadingWindow
         {
             if(_isShowed == false) return _tweenHide;
             
-            _isShowed = false;
-            _rotateUIAroundPoint.StopRotation();
-            _tweenHide = base.Hide().OnComplete(() => _tweenHide = null);
+            StopLoadingTween();
+            base.Hide();
             return _tweenHide;
         }
         
         public override void ShowFast()
         {
-            _tweenShow?.Complete();
-            _isShowed = true;
             base.ShowFast();
-            _rotateUIAroundPoint.StartRotation();
+            StartLoadingTween();
         }
 
         public override void HideFast()
         {
-            _tweenHide?.Complete();
-            _isShowed = false;
             base.HideFast();
-            _rotateUIAroundPoint.StopRotation();
+            StopLoadingTween();
         }
     }
 }
