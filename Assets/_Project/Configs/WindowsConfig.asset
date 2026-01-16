@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19615eb772034450a278698a02100861, type: 3}
   m_Name: WindowsConfig
   m_EditorClassIdentifier: 
-  windowsList:
-  - {fileID: 6797241515997204101, guid: 6409c056070f6194dada5f1d5b48130b, type: 3}
-  - {fileID: 8370006358681895502, guid: 12b37ffe3a8ee174b964b18e9d0ef24c, type: 3}
-  - {fileID: 1367909721383882776, guid: b9e86200fc88f144a84ef14cfa277222, type: 3}
+  _windowsList:
+  - {fileID: 6470306802691435924, guid: 6409c056070f6194dada5f1d5b48130b, type: 3}
+  - {fileID: 5185487543192450002, guid: d17b241b71be4c644b8b8af17bc90228, type: 3}
+  - {fileID: 2540181382334716698, guid: b9e86200fc88f144a84ef14cfa277222, type: 3}

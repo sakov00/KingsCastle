@@ -2,8 +2,6 @@ using System;
 using System.Threading;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.UI.Windows;
-using _Project.Scripts.UI.Windows.LoadingWindow;
-using _Project.Scripts.UI.Windows.MainMenuWindow;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -22,10 +20,10 @@ namespace _Project.Scripts
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            _windowsManager.ShowFastWindow<LoadingWindowPresenter>();
+            _windowsManager.ShowFastWindow<LoadingWindow>();
             await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
-            _windowsManager.ShowFastWindow<MainMenuWindowPresenter>();
-            _windowsManager.HideWindow<LoadingWindowPresenter>();
+            _windowsManager.ShowFastWindow<MainMenuWindow>();
+            _windowsManager.HideWindow<LoadingWindow>();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace _Project.Scripts.AllAppData
         [MemoryPackIgnore] public readonly IntReactiveProperty CurrentRoundReactive;
         [MemoryPackIgnore] public readonly IntReactiveProperty LevelMoneyReactive;
         [MemoryPackIgnore] public readonly BoolReactiveProperty IsFightingReactive;
+        [MemoryPackIgnore] public readonly BoolReactiveProperty IsStrategyModeReactive;
         
         public int CurrentRound
         {
@@ -34,6 +35,12 @@ namespace _Project.Scripts.AllAppData
             set => IsFightingReactive.Value = value;
         }
         
+        public bool IsStrategyMode
+        {
+            get => IsStrategyModeReactive.Value;
+            set => IsStrategyModeReactive.Value = value;
+        }
+        
         [MemoryPackIgnore] public Vector3 MoveDirection { get; set; }
 
         public LevelData()
@@ -41,6 +48,7 @@ namespace _Project.Scripts.AllAppData
             CurrentRoundReactive = new IntReactiveProperty(0);
             LevelMoneyReactive = new IntReactiveProperty(0);
             IsFightingReactive = new BoolReactiveProperty(false);
+            IsStrategyModeReactive = new BoolReactiveProperty(false);
         }
 
         public void SetData(LevelData levelData)
@@ -50,6 +58,7 @@ namespace _Project.Scripts.AllAppData
             CurrentRoundReactive.Value = levelData.CurrentRound;
             LevelMoneyReactive.Value = levelData.LevelMoney;
             IsFightingReactive.Value = levelData.IsFighting;
+            IsStrategyModeReactive.Value = levelData.IsStrategyMode;
         }
     }
 }

@@ -50,34 +50,29 @@ namespace _Project.Scripts.UI.WindowElements
         
         protected override void LateUpdate()
         {
-            base.LateUpdate();
-            ClampContentPosition();
-
-            float delta = content.anchoredPosition.x - _lastContentX;
-            float step = _levelWidth + _spaceBetweenLevels;
-
-            while (Mathf.Abs(delta) >= step)
-            {
-                if (delta > 0)
-                {
-                    MoveLeftToRight();
-                    _lastContentX += step;
-                }
-                else
-                {
-                    MoveRightToLeft();
-                    _lastContentX -= step;
-                }
-
-                delta = content.anchoredPosition.x - _lastContentX;
-            }
+            // base.LateUpdate();
+            // ClampContentPosition();
+            //
+            // if(_levelPanels == null || _levelPanels.Count == 0) return;
+            //
+            // float delta = content.anchoredPosition.x - _lastContentX;
+            //
+            // if (Mathf.Abs(delta) < _levelWidth + _spaceBetweenLevels) return;
+            //
+            // if (delta > 0)
+            // {
+            //     MoveLeftToRight();
+            // }
+            // else
+            // {
+            //     MoveRightToLeft();
+            // }
+            //
+            // _lastContentX = content.anchoredPosition.x;
         }
-
         
         private void MoveLeftToRight()
         {
-            if(_levelPanels == null || _levelPanels.Count == 0) return;
-            
             var last = _levelPanels[^1];
             _levelPanels.RemoveAt(_levelPanels.Count - 1);
             _levelPanels.Insert(0, last);
@@ -90,8 +85,6 @@ namespace _Project.Scripts.UI.WindowElements
 
         private void MoveRightToLeft()
         {
-            if(_levelPanels == null || _levelPanels.Count == 0) return;
-            
             var first = _levelPanels[0];
             _levelPanels.RemoveAt(0);
             _levelPanels.Add(first);

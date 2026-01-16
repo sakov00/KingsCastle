@@ -11,7 +11,6 @@ using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI.Windows;
 using _Project.Scripts.UI.Windows.GameWindow;
-using _Project.Scripts.UI.Windows.LoadingWindow;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -39,7 +38,7 @@ namespace _Project.Scripts
         public virtual async UniTask StartAsync(CancellationToken cancellation = default)
         {
             // SoundManager.PlayMusicAsync(SoundKey.MenuMusic).Forget();
-            // WindowsManager.ShowFastWindow<LoadingWindowPresenter>();
+            // WindowsManager.ShowFastWindow<LoadingWindow>();
             // await StartLevel(AppData.User.CurrentLevel);
         }
 
@@ -47,7 +46,7 @@ namespace _Project.Scripts
         {
             await ResetService.ResetLevel();
             await SceneCreator.InstantiateObjects(AppData.LevelData.ObjectsForRestoring);
-            WindowsManager.ShowFastWindow<GameWindowPresenter>();
+            WindowsManager.ShowFastWindow<GameWindow>();
         }
 
         public virtual async UniTask RestartLevel()
@@ -62,8 +61,8 @@ namespace _Project.Scripts
             AppData.User.CurrentLevel = levelIndex;
             
             Time.timeScale = 0;
-            await WindowsManager.ShowWindow<LoadingWindowPresenter>();
-            WindowsManager.HideFastWindow<GameWindowPresenter>();
+            await WindowsManager.ShowWindow<LoadingWindow>();
+            WindowsManager.HideFastWindow<GameWindow>();
             
             await LoadLevel(levelIndex);
 
@@ -74,8 +73,8 @@ namespace _Project.Scripts
             // ApplicationEventsHandler.OnApplicationQuited += OnApplicationQuit;
             // ApplicationEventsHandler.OnApplicationPaused += OnApplicationPause;
 
-            WindowsManager.ShowFastWindow<GameWindowPresenter>();
-            await WindowsManager.HideWindow<LoadingWindowPresenter>();
+            WindowsManager.ShowFastWindow<GameWindow>();
+            await WindowsManager.HideWindow<LoadingWindow>();
             Time.timeScale = 1;
         }
         
