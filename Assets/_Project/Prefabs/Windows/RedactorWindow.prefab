@@ -103,6 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -659,6 +660,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -796,6 +798,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -858,7 +861,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6849643860490214181}
-  - component: {fileID: 105420395907749080}
   - component: {fileID: 6283936321557795076}
   - component: {fileID: 5061125597974301615}
   m_Layer: 0
@@ -891,23 +893,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &105420395907749080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6348516472499966283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bdc41879d3a45d6b4a134599ca07df5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Redactor.Scripts.GameWindow.LevelRedactorWindowViewModel
-  _model:
-    _windowType: 0
-    _isPaused:
-      value: 0
-  _view: {fileID: 6283936321557795076}
 --- !u!114 &6283936321557795076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Redactor.Scripts.GameWindow.LevelRedactorWindowView
   _canvasGroup: {fileID: 5061125597974301615}
-  _presenter: {fileID: 105420395907749080}
+  <WindowType>k__BackingField: 0
   _saveLevelButton: {fileID: 2588368260627422035}
   _loadLevelButton: {fileID: 4895236835939391761}
   _playLevelButton: {fileID: 8767324863805646317}
@@ -1162,6 +1147,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1298,6 +1284,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

@@ -18,8 +18,6 @@ namespace _Project.Scripts.UI.Windows
         [Header("Levels")]
         [SerializeField] private LevelScrollRect _scrollRect;
         [SerializeField] private List<LevelPanel> _levelPanels = new();
-        [SerializeField] private int _levelWidth = 400;
-        [SerializeField] private int _spaceBetweenLevels = 84;
         [SerializeField] private int _totalLevels = 100;
 
         protected override void Awake()
@@ -32,7 +30,7 @@ namespace _Project.Scripts.UI.Windows
         public override void Initialize()
         {
             base.Initialize();
-            InitializeLevelPanels(_appData.User.CurrentLevel);
+            InitializeLevelPanels(5);
         }
         
         private void OpenSettingsWindow() => WindowsManager.ShowWindow<SettingsWindow>();
@@ -40,7 +38,7 @@ namespace _Project.Scripts.UI.Windows
 
         private void InitializeLevelPanels(int currentLevel)
         {
-            _scrollRect.Initialize(currentLevel, _levelPanels, _levelWidth, _spaceBetweenLevels, _totalLevels);
+            _scrollRect.Initialize(currentLevel, _levelPanels, _totalLevels);
         }
     }
 }
