@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: -1108216509333152265}
+  _destroyAfterHide: 0
   <WindowType>k__BackingField: 2
   _loadingText: {fileID: 609856424351594998}
   _baseText: Loading

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.Enums;
 using _Project.Scripts.SO;
+using _Project.Scripts.UI.Windows;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
-namespace _Project.Scripts.UI.Windows
+namespace _Project.Scripts
 {
     public class WindowsManager : MonoBehaviour, IInitializable
     {
@@ -37,6 +38,7 @@ namespace _Project.Scripts.UI.Windows
             if (!_cachedWindows.TryGetValue(typeof(T), out var window))
             {
                 window = _resolver.Instantiate(_windowsConfig.Windows[typeof(T)], parent: GetParent(windowType));
+                window.Initialize();
                 window.HideFast();
                 _cachedWindows.Add(typeof(T), window);
             }
@@ -47,7 +49,6 @@ namespace _Project.Scripts.UI.Windows
         {
             var windowType = _windowsConfig.Windows[typeof(T)].WindowType;
             var window = GetWindow<T>();
-            window.Initialize();
             
             if (windowType == WindowType.Popup) ShowDarkBackground();
             return window.Show();
@@ -57,7 +58,7 @@ namespace _Project.Scripts.UI.Windows
         {
             var windowType = _windowsConfig.Windows[typeof(T)].WindowType;
             var window = GetWindow<T>();
-            window.Initialize();
+            
             if (windowType == WindowType.Popup) ShowDarkBackgroundFast();
             window.ShowFast();
         }
@@ -66,25 +67,36 @@ namespace _Project.Scripts.UI.Windows
         {
             var windowType = _windowsConfig.Windows[typeof(T)].WindowType;
             var window = GetWindow<T>();
-            window.Dispose();
             
             if (windowType == WindowType.Popup) HideDarkBackground();
-            return window.Hide();
+            return window.Hide().OnComplete(() =>
+            {
+                if (window.DestroyAfterHide)
+                {
+                    _cachedWindows.Remove(typeof(T));
+                    Destroy(window.gameObject);
+                }
+            });
         }
 
         public void HideFastWindow<T>() where T : BaseWindow
         {
             var windowType = _windowsConfig.Windows[typeof(T)].WindowType;
             var window = GetWindow<T>();
-            window.Dispose();
+            
             if (windowType == WindowType.Popup) HideDarkBackgroundFast();
             window.HideFast();
+            if (window.DestroyAfterHide)
+            {
+                _cachedWindows.Remove(typeof(T));
+                Destroy(window.gameObject);
+            }
         }
         
         private Tween ShowDarkBackground()
         {
             var color = _darkBackground.color;
-            color.a = 0.5f;
+            color.a = 0.8f;
             var sequence = DOTween.Sequence();
             sequence.AppendCallback(() => _darkBackground.gameObject.SetActive(true));
             sequence.Append(_darkBackground.DOColor(color, 0.5f));
@@ -95,7 +107,7 @@ namespace _Project.Scripts.UI.Windows
         private void ShowDarkBackgroundFast()
         {
             var color = _darkBackground.color;
-            color.a = 0.5f;
+            color.a = 0.8f;
             _darkBackground.color = color;
             _darkBackground.gameObject.SetActive(true);
         }

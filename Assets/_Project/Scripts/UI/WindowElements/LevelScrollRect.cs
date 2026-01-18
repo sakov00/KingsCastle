@@ -22,6 +22,7 @@ namespace _Project.Scripts.UI.WindowElements
         private float _minX;
         private float _maxX;
         private float _lastContentX;
+        private int _offsetStepsAutoScroll = -2;
         
         public void Initialize(int currentLevel, List<LevelPanel> levelPanels, int totalLevels, float spacingRatio = 0.18f)
         {
@@ -32,54 +33,18 @@ namespace _Project.Scripts.UI.WindowElements
             _spacingRatio = Mathf.Clamp01(spacingRatio);
             CalculateDynamicSizes();
             ApplyPanelSizes();
-            UpdatePanelPositions();
             CalculateLimits();
+            ScrollToLevel(_currentLevel);
+        }
+        
+        public void ScrollToLevel(int levelIndex)
+        {
+            var step = _levelWidth + _spaceBetweenLevels;
+            content.anchoredPosition = new Vector2(-(levelIndex + _offsetStepsAutoScroll) * step , 0);
+            ClampContentPosition();
+            _lastContentX = content.anchoredPosition.x;
+            UpdatePanelPositions();
             UpdateAllPanels();
-        }
-        
-        private void CalculateDynamicSizes()
-        {
-            var viewportWidth = viewport.rect.width;
-            var totalSpacing = viewportWidth * _spacingRatio;
-            _spaceBetweenLevels = totalSpacing / _levelPanels.Count;
-            _levelWidth = (viewportWidth - totalSpacing) / _levelPanels.Count;
-        }
-
-        private void ApplyPanelSizes()
-        {
-            foreach (var panel in _levelPanels)
-            {
-                var rect = panel.GetComponent<RectTransform>();
-
-                rect.SetSizeWithCurrentAnchors(
-                    RectTransform.Axis.Horizontal,
-                    _levelWidth
-                );
-            }
-        }
-        
-        private void UpdatePanelPositions()
-        {
-            float step = _levelWidth + _spaceBetweenLevels;
-            float halfSpacing = _spaceBetweenLevels * 0.5f;
-
-            for (int i = 0; i < _levelPanels.Count; i++)
-            {
-                var panel = _levelPanels[i];
-
-                panel.SetPosition(
-                    new Vector2(halfSpacing + i * step, panel.GetPosition().y)
-                );
-            }
-        }
-
-        private void CalculateLimits()
-        {
-            float contentWidth = _totalLevels * _levelWidth + (_totalLevels - 1) * _spaceBetweenLevels;
-            float viewportWidth = 5 * _levelWidth + (5 - 1) * _spaceBetweenLevels;
-
-            _minX = 0f;
-            _maxX = Mathf.Max(contentWidth - viewportWidth, 0f);
         }
 
         public override void OnDrag(PointerEventData eventData)
@@ -158,6 +123,51 @@ namespace _Project.Scripts.UI.WindowElements
             }
         }
         
+        private void CalculateDynamicSizes()
+        {
+            var viewportWidth = viewport.rect.width;
+            var totalSpacing = viewportWidth * _spacingRatio;
+            _spaceBetweenLevels = totalSpacing / _levelPanels.Count;
+            _levelWidth = (viewportWidth - totalSpacing) / _levelPanels.Count;
+        }
+
+        private void ApplyPanelSizes()
+        {
+            foreach (var panel in _levelPanels)
+            {
+                var rect = panel.GetComponent<RectTransform>();
+
+                rect.SetSizeWithCurrentAnchors(
+                    RectTransform.Axis.Horizontal,
+                    _levelWidth
+                );
+            }
+        }
+        
+        private void UpdatePanelPositions()
+        {
+            float step = _levelWidth + _spaceBetweenLevels;
+            float halfSpacing = _spaceBetweenLevels * 0.5f;
+
+            for (int i = 0; i < _levelPanels.Count; i++)
+            {
+                var panel = _levelPanels[i];
+
+                panel.SetPosition(
+                    new Vector2(-content.anchoredPosition.x + halfSpacing + i * step, panel.GetPosition().y)
+                );
+            }
+        }
+
+        private void CalculateLimits()
+        {
+            float contentWidth = _totalLevels * _levelWidth + (_totalLevels - 1) * _spaceBetweenLevels;
+            float viewportWidth = 5 * _levelWidth + (5 - 1) * _spaceBetweenLevels;
+
+            _minX = 0f;
+            _maxX = Mathf.Max(contentWidth - viewportWidth, 0f);
+        }
+        
         private void UpdateAllPanels()
         {
             float contentX = -content.anchoredPosition.x;
@@ -182,7 +192,7 @@ namespace _Project.Scripts.UI.WindowElements
                 _levelPanels[i].Initialize(
                     _dataLevels[levelIndex],
                     10,
-                    LevelState.Locked
+                    LevelState.Ready
                 );
             }
         }

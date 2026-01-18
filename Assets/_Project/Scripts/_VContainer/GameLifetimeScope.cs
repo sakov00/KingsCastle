@@ -6,7 +6,6 @@ using _Project.Scripts.Pools;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
 using _Project.Scripts.SO;
-using _Project.Scripts.UI.Windows;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -16,7 +15,7 @@ namespace _Project.Scripts._VContainer
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] protected WindowsManager _windowsManager;
-        [SerializeField] protected SoundManager _soundManager;
+        [SerializeField] protected SettingsService _settingsService;
         [SerializeField] protected PoolsManager _poolsManager;
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
         
@@ -95,7 +94,7 @@ namespace _Project.Scripts._VContainer
 
         private void RegisterServices(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_soundManager).As<IInitializable>().AsSelf();
+            builder.RegisterInstance(_settingsService).As<IInitializable>().AsSelf();
             builder.RegisterInstance(_poolsManager).AsSelf();
             builder.RegisterInstance(_applicationEventsHandler).AsSelf();
             builder.Register<ResetLevelService>(Lifetime.Singleton).AsSelf();

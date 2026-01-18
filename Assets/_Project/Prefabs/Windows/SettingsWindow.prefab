@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 2399456669969000512}
   - component: {fileID: 8357868538987005589}
   - component: {fileID: 6161978806978735115}
-  - component: {fileID: 524037872840859499}
   - component: {fileID: 7423167849499256691}
   m_Layer: 0
   m_Name: SoundButton
@@ -210,22 +209,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &524037872840859499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874105426649531013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2677571b011b465da4ec55d966fd77e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecialButtons.ToggleButton
-  _button: {fileID: 6161978806978735115}
-  _icon: {fileID: 8357868538987005589}
-  _onSprite: {fileID: 21300000, guid: f7a1377244545974db663a6a4a8190af, type: 3}
-  _offSprite: {fileID: 21300000, guid: 7307540e6a243c34db7ab4ada39293df, type: 3}
 --- !u!114 &7423167849499256691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +451,6 @@ GameObject:
   - component: {fileID: 4850481701848395805}
   - component: {fileID: 7618219363649066748}
   - component: {fileID: 2596265320544612680}
-  - component: {fileID: 7660091140528388168}
   - component: {fileID: 4761304809309975689}
   m_Layer: 0
   m_Name: VibroButton
@@ -591,22 +573,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7660091140528388168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4677082234290496739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2677571b011b465da4ec55d966fd77e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecialButtons.ToggleButton
-  _button: {fileID: 2596265320544612680}
-  _icon: {fileID: 7618219363649066748}
-  _onSprite: {fileID: 21300000, guid: d7bd083f7c5512642a26eca6d4c4b172, type: 3}
-  _offSprite: {fileID: 21300000, guid: 6d09c1056cbe3914dae60c7eebe3cfdd, type: 3}
 --- !u!114 &4761304809309975689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,7 +1055,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5444643170893645429}
   - {fileID: 6736072383301826834}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1111,10 +1076,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.Windows.SettingsWindow.SettingsWindowView
   _canvasGroup: {fileID: -1108216509333152265}
-  <WindowType>k__BackingField: 0
-  _soundButton: {fileID: 6161978806978735115}
+  <WindowType>k__BackingField: 1
+  <DestroyAfterHide>k__BackingField: 1
   _musicButton: {fileID: 8368022699853691867}
+  _musicImage: {fileID: 1061911592055665358}
+  _musicOnSprite: {fileID: 21300000, guid: ea7ab0a5e31c07a48ba137ca91c9f8f9, type: 3}
+  _musicOffSprite: {fileID: 21300000, guid: 9b6c53126925c3b438b57ba430450ab3, type: 3}
+  _soundButton: {fileID: 6161978806978735115}
+  _soundImage: {fileID: 8357868538987005589}
+  _soundOnSprite: {fileID: 21300000, guid: f7a1377244545974db663a6a4a8190af, type: 3}
+  _soundOffSprite: {fileID: 21300000, guid: 7307540e6a243c34db7ab4ada39293df, type: 3}
   _vibroButton: {fileID: 2596265320544612680}
+  _vibroImage: {fileID: 7618219363649066748}
+  _vibroOnSprite: {fileID: 21300000, guid: d7bd083f7c5512642a26eca6d4c4b172, type: 3}
+  _vibroOffSprite: {fileID: 21300000, guid: 6d09c1056cbe3914dae60c7eebe3cfdd, type: 3}
   _privacyButton: {fileID: 2127364649460484667}
   _termsButton: {fileID: 5374842250015694252}
   _backButton: {fileID: 6428055503882975373}
@@ -1419,7 +1394,6 @@ GameObject:
   - component: {fileID: 6824966277591649966}
   - component: {fileID: 1061911592055665358}
   - component: {fileID: 8368022699853691867}
-  - component: {fileID: 3872133098927593647}
   - component: {fileID: 2992151389781347825}
   m_Layer: 0
   m_Name: MusicButton
@@ -1542,22 +1516,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3872133098927593647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7138236278861608900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2677571b011b465da4ec55d966fd77e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecialButtons.ToggleButton
-  _button: {fileID: 8368022699853691867}
-  _icon: {fileID: 1061911592055665358}
-  _onSprite: {fileID: 21300000, guid: ea7ab0a5e31c07a48ba137ca91c9f8f9, type: 3}
-  _offSprite: {fileID: 21300000, guid: 9b6c53126925c3b438b57ba430450ab3, type: 3}
 --- !u!114 &2992151389781347825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,81 +1534,6 @@ MonoBehaviour:
   _ease: 6
   _originalScalePortrait: {x: 1, y: 1, z: 1}
   _originalScaleLandscape: {x: 1, y: 1, z: 1}
---- !u!1 &7986914502020033695
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5444643170893645429}
-  - component: {fileID: 2746092391201386802}
-  - component: {fileID: 5248975856801353787}
-  m_Layer: 0
-  m_Name: Dark
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &5444643170893645429
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986914502020033695}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6849643860490214181}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2746092391201386802
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986914502020033695}
-  m_CullTransparentMesh: 1
---- !u!114 &5248975856801353787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986914502020033695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 67d77d891c33b3646a66c7f78bec5827, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8472848154809216776
 GameObject:
   m_ObjectHideFlags: 0

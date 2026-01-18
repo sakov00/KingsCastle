@@ -1,14 +1,18 @@
 using System.Collections.Generic;
 using System.Threading;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace _Project.Scripts.Services
 {
-    public class SoundManager : MonoBehaviour, IInitializable
+    public class SettingsService : MonoBehaviour, IInitializable
     {
+        [Inject] private AppData _appData;
+        
         [System.Serializable]
         public class Sound
         {
@@ -73,7 +77,7 @@ namespace _Project.Scripts.Services
             await FadeVolumeAsync(_musicSource, 0f, _targetMusicVolume, fadeDuration * 0.5f, token);
         }
 
-        public void PlaySFX(SoundKey key)
+        public void PlaySfx(SoundKey key)
         {
             if (_sfx.TryGetValue(key, out var clip))
                 _sfxSource.PlayOneShot(clip);
@@ -114,17 +118,6 @@ namespace _Project.Scripts.Services
                 _fadeCts.Dispose();
                 _fadeCts = null;
             }
-        }
-
-        public void SetMusicVolume(float volume)
-        {
-            _targetMusicVolume = Mathf.Clamp01(volume);
-            _musicSource.volume = _targetMusicVolume;
-        }
-
-        public void SetSFXVolume(float volume)
-        {
-            _sfxSource.volume = Mathf.Clamp01(volume);
         }
     }
 }

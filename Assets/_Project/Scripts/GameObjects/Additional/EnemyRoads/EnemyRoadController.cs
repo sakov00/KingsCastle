@@ -46,12 +46,6 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
             InjectManager.Inject(this);
         }
 
-        private void Start()
-        {
-            if (_appData.AppMode == AppMode.Redactor)
-                InitializeAsync();
-        }
-
         public UniTask InitializeAsync()
         {
             _saveRegistry.Register(this);

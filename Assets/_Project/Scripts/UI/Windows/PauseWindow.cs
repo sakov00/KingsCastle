@@ -13,47 +13,47 @@ namespace _Project.Scripts.UI.Windows
     {
         [Inject] private AppData _appData;
         [Inject] private GameManager _gameManager;
-        [Inject] private SoundManager _soundManager;
+        [Inject] private SettingsService _settingsService;
         
         [Header("Buttons")]
-        [SerializeField] private Button _homeButton;
+        [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _restartButton;
-        [SerializeField] private Button _continueButton;
+        [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _mainMenuButton;
 
         public override void Initialize()
         {
             base.Initialize();
-            _homeButton.OnClickAsObservable().Subscribe(_ =>
+            _resumeButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _soundManager.PlaySFX(SoundKey.ButtonClickSound);
-                HomeOnClick();
+                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                WindowsManager.HideWindow<PauseWindow>();
             }).AddTo(Disposables);
-            _restartButton.OnClickAsObservable().Subscribe(_ =>
+            
+            _restartButton.OnClickAsObservable().Subscribe(async _ =>
             {
-                _soundManager.PlaySFX(SoundKey.ButtonClickSound);
-                RestartOnClick().Forget();
+                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                await WindowsManager.ShowWindow<LoadingWindow>();
+                WindowsManager.HideFastWindow<PauseWindow>();
+                _gameManager.RestartLevel().Forget();
             }).AddTo(Disposables);
-            _continueButton.OnClickAsObservable().Subscribe(_ =>
+            
+            _settingsButton.OnClickAsObservable().Subscribe(async _ =>
             {
-                _soundManager.PlaySFX(SoundKey.ButtonClickSound);
-                ContinueOnClick();
+                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                await WindowsManager.HideWindow<PauseWindow>();
+                await WindowsManager.ShowWindow<SettingsWindow>();
             }).AddTo(Disposables);
-        }
-        
-        private void HomeOnClick()
-        {
-            WindowsManager.ShowWindow<MainMenuWindow>();
-        }
-        
-        private async UniTaskVoid RestartOnClick()
-        {
-            await WindowsManager.HideWindow<PauseWindow>();
-            await _gameManager.RestartLevel();
-        }
-        
-        private void ContinueOnClick()
-        {
-            WindowsManager.HideWindow<PauseWindow>();
+            
+            _mainMenuButton.OnClickAsObservable().Subscribe(async _ =>
+            {
+                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                await WindowsManager.ShowWindow<LoadingWindow>();
+                WindowsManager.HideFastWindow<GameWindow>();
+                WindowsManager.HideFastWindow<PauseWindow>();
+                WindowsManager.ShowFastWindow<MainMenuWindow>();
+                WindowsManager.HideWindow<LoadingWindow>();
+            }).AddTo(Disposables);
         }
     }
 }

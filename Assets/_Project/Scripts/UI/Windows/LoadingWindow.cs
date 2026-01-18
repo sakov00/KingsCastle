@@ -21,6 +21,7 @@ namespace _Project.Scripts.UI.Windows
             _loadTween = DOTween.Sequence()
                 .AppendCallback(UpdateText)
                 .AppendInterval(_interval)
+                .SetUpdate(true)
                 .SetLoops(-1);
         }
         

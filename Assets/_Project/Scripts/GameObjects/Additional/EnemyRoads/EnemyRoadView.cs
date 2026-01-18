@@ -24,8 +24,7 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
         private void Awake()
         {
             InjectManager.Inject(this);
-            if(_appData.AppMode == AppMode.Game)
-                _loftRoadBehaviour.enabled = false;
+            _loftRoadBehaviour.enabled = false;
         }
 
         public void RefreshInfoRound(SplineContainer splineContainer, List<EnemyGroup> roundEnemyList)

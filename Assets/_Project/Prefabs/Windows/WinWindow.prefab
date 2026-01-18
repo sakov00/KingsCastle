@@ -786,6 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: -1108216509333152265}
   <WindowType>k__BackingField: 0
+  <DestroyAfterHide>k__BackingField: 0
   _homeButton: {fileID: 3203940445668454205}
   _restartButton: {fileID: 1416806257538274966}
   _continueButton: {fileID: 9215490474555827770}

@@ -21,6 +21,7 @@ namespace _Project.Scripts.UI.Windows
         protected Sequence TweenHide;
         
         [field:SerializeField] public WindowType WindowType { get; private set; }
+        [field: SerializeField] public bool DestroyAfterHide { get; private set; } = true;
         
         protected virtual void Awake()
         {
@@ -54,7 +55,11 @@ namespace _Project.Scripts.UI.Windows
             TweenHide.Append(_canvasGroup.DOFade(0f, 0.5f).From(1));
             TweenHide.AppendCallback(() => gameObject.SetActive(false));
             TweenHide.SetUpdate(true);
-            TweenHide.OnComplete(() => TweenHide = null);
+            TweenHide.OnComplete(() =>
+            {
+                TweenHide = null;
+                if (DestroyAfterHide) Destroy(gameObject);
+            });
             return TweenHide;
         }
         
@@ -77,6 +82,11 @@ namespace _Project.Scripts.UI.Windows
         public virtual void Dispose()
         {
             Disposables?.Dispose();
+        }
+
+        private void OnDestroy()
+        {
+            Dispose();
         }
     }
 }

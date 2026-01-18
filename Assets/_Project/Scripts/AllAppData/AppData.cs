@@ -6,7 +6,6 @@ namespace _Project.Scripts.AllAppData
 {
     public class AppData : IInitializable
     {
-        public AppMode AppMode { get; set; }
         public User User { get; private set; }
         public LevelData LevelData { get; set; }
         public LevelEvents LevelEvents { get; private set; }

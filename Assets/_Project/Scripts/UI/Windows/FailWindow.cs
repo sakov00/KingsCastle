@@ -11,7 +11,7 @@ namespace _Project.Scripts.UI.Windows
 {
     public class FailWindow : BaseWindow
     {
-        [Inject] private SoundManager _soundManager;
+        [Inject] private SettingsService _settingsService;
         [Inject] private AppData _appData;
         [Inject] private GameManager _gameManager;
 
@@ -24,11 +24,11 @@ namespace _Project.Scripts.UI.Windows
             base.Awake();
             
             _homeButton.OnClickAsObservable()
-                .Subscribe(_ => _soundManager.PlaySFX(SoundKey.ButtonClickSound))
+                .Subscribe(_ => _settingsService.PlaySfx(SoundKey.ButtonClickSound))
                 .AddTo(Disposables);
 
             _restartButton.OnClickAsObservable()
-                .Subscribe(_ => _soundManager.PlaySFX(SoundKey.ButtonClickSound))
+                .Subscribe(_ => _settingsService.PlaySfx(SoundKey.ButtonClickSound))
                 .AddTo(Disposables);
         }
 

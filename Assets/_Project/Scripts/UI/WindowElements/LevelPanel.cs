@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.Enums;
+using _Project.Scripts.Services;
+using _Project.Scripts.UI.Windows;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UniRx;
@@ -13,7 +15,9 @@ namespace _Project.Scripts.UI.WindowElements
 {
     public class LevelPanel : MonoBehaviour
     {
+        [Inject] private WindowsManager _windowsManager;
         [Inject] private GameManager _gameManager;
+        [Inject] private SettingsService _settingsService;
         
         [SerializeField] private ReactiveProperty<LevelState> _currentState = new(LevelState.Locked);
         
@@ -60,12 +64,28 @@ namespace _Project.Scripts.UI.WindowElements
 
             _restartButton.onClick.AsObservable()
                 .Where(_ => _currentState.Value == LevelState.Passed)
-                .Subscribe(_ => _gameManager.StartLevel(_levelNumber).Forget())
+                .Subscribe(async _ =>
+                {
+                    _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                    await _windowsManager.ShowWindow<LoadingWindow>();
+                    _windowsManager.HideFastWindow<MainMenuWindow>();
+                    await _gameManager.StartLevel(_levelNumber);
+                    _windowsManager.ShowFastWindow<GameWindow>();
+                    _windowsManager.HideWindow<LoadingWindow>();
+                })
                 .AddTo(_disposables);
             
             _playButton.onClick.AsObservable()
                 .Where(_ => _currentState.Value == LevelState.Ready)
-                .Subscribe(_ => _gameManager.StartLevel(_levelNumber).Forget())
+                .Subscribe(async _ =>
+                {
+                    _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                    await _windowsManager.ShowWindow<LoadingWindow>();
+                    _windowsManager.HideFastWindow<MainMenuWindow>();
+                    await _gameManager.StartLevel(_levelNumber);
+                    _windowsManager.ShowFastWindow<GameWindow>();
+                    _windowsManager.HideWindow<LoadingWindow>();
+                })
                 .AddTo(_disposables);
         }
 
