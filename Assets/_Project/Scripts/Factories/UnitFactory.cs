@@ -1,4 +1,5 @@
 using System.Linq;
+using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.Concrete.FriendsGroup;
@@ -19,8 +20,14 @@ namespace _Project.Scripts.Factories
             var prefab = _unitPrefabConfig.allUnitPrefabs
                 .FirstOrDefault(p => p.UnitType == type);
 
-            return prefab != null ? _resolver.Instantiate(prefab, position, rotation) : null;
-        }
+            var newUnit = prefab != null ? _resolver.Instantiate(prefab, position, rotation) : null;
+            if (newUnit?.UnitType == UnitType.Player)
+            {
+                GlobalObjects.CameraController.Initialize(newUnit.transform);
+            }
+
+            return newUnit;
+        } 
         
         public FriendsGroupController CreateFriendsGroup(UnitType type, Vector3 position = default, Quaternion rotation = default)
         {

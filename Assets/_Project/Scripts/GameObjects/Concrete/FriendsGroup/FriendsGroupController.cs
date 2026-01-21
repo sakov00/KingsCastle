@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
-using _Project.Scripts.Factories;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
@@ -16,11 +15,10 @@ using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 namespace _Project.Scripts.GameObjects.Concrete.FriendsGroup
 {
 
-    public class FriendsGroupController : MonoBehaviour, ISavableController, IPoolableDispose, ISelectable, IId
+    public class FriendsGroupController : MonoBehaviour, ISavableController, IPoolableDispose, ISelectable
     {
         [Inject] private AppData _appData;
         [Inject] private SaveRegistry _saveRegistry;
-        [Inject] private IdsRegistry _idsRegistry;
         [Inject] private UnitPool _unitPool;
         
         [field:SerializeField] public FriendsGroupModel Model { get; private set;}
@@ -37,19 +35,18 @@ namespace _Project.Scripts.GameObjects.Concrete.FriendsGroup
         {
             InjectManager.Inject(this);
             _saveRegistry.Register(this);
-            _idsRegistry.Register(this);
             
             _disposables = new CompositeDisposable();
 
             Units.ObserveAdd().Subscribe(addedUnit =>
             {
-                Model.UnitIds.Add(addedUnit.Value.Id);
+                // Model.UnitIds.Add(addedUnit.Value.Id);
                 addedUnit.Value.OnKilled += OnKilledHandler;
             }).AddTo(_disposables);
             
             Units.ObserveRemove().Subscribe(removedUnit =>
             {
-                Model.UnitIds.Remove(removedUnit.Value.Id);
+                // Model.UnitIds.Remove(removedUnit.Value.Id);
                 UnitOnKilled?.Invoke(removedUnit.Value);
                 removedUnit.Value.OnKilled -= OnKilledHandler;
             }).AddTo(_disposables);
@@ -81,8 +78,8 @@ namespace _Project.Scripts.GameObjects.Concrete.FriendsGroup
             {
                 foreach (var unitId in Model.UnitIds)
                 {
-                    var unit = (UnitController)_idsRegistry.Get(unitId);
-                    Units.Add(unit);
+                    // var unit = (UnitController)_idsRegistry.Get(unitId);
+                    // Units.Add(unit);
                 }
             }
         }
@@ -125,7 +122,6 @@ namespace _Project.Scripts.GameObjects.Concrete.FriendsGroup
             if (clearFromRegistry)
             {
                 _saveRegistry.Unregister(this);
-                _idsRegistry.Unregister(this);
             }
             Destroy(gameObject);
         }

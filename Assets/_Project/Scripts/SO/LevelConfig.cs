@@ -7,7 +7,7 @@ using UnityEngine;
 namespace _Project.Scripts.SO
 {
     [CreateAssetMenu(fileName = "LevelsConfig", menuName = "SO/Levels Config")]
-    public class LevelsConfig : ScriptableObject
+    public class EnvironmentConfig : ScriptableObject
     {
         [SerializeField] public TerrainController terrainPrefab;
         [SerializeField] public List<EnvironmentController> environmentPrefabs;

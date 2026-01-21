@@ -8,14 +8,11 @@ namespace _Project.Scripts.AllAppData
     {
         public User User { get; private set; }
         public LevelData LevelData { get; set; }
-        public LevelEvents LevelEvents { get; private set; }
 
         public void Initialize()
         {
             User = new User();
             LevelData = new LevelData();
-            LevelEvents = new LevelEvents();
-            InjectManager.Inject(LevelEvents);
         }
     }
 }

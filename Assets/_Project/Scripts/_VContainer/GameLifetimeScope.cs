@@ -20,8 +20,7 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
         
         [Header("Configs")]
-        [SerializeField] protected LevelsConfig _levelsConfig;
-        [SerializeField] protected OthersPrefabConfig _othersPrefabConfig;
+        [SerializeField] protected EnvironmentConfig _environmentConfig;
         [SerializeField] protected UnitPrefabConfig _unitPrefabConfig;
         [SerializeField] protected BuildingPrefabConfig _buildingPrefabConfig;
         [SerializeField] protected ProjectilePrefabConfig _projectilePrefabConfig;
@@ -46,7 +45,7 @@ namespace _Project.Scripts._VContainer
         protected virtual void RegisterGame(IContainerBuilder builder)
         {
             builder.Register<InitializeGame>(Lifetime.Singleton).AsSelf().As<IInitializable, IAsyncStartable>();
-            builder.Register<GameManager>(Lifetime.Singleton).AsSelf().As<IInitializable, IAsyncStartable>();
+            builder.Register<GameManager>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterAppData(IContainerBuilder builder)
@@ -61,7 +60,6 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterRegistries(IContainerBuilder builder)
         {
-            builder.Register<IdsRegistry>(Lifetime.Singleton).AsSelf();
             builder.Register<LiveRegistry>(Lifetime.Singleton).AsSelf();
             builder.Register<SaveRegistry>(Lifetime.Singleton).AsSelf();
         }
@@ -75,7 +73,6 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterFactories(IContainerBuilder builder)
         {
-            builder.Register<OthersFactory>(Lifetime.Singleton).AsSelf();
             builder.Register<BuildFactory>(Lifetime.Singleton).AsSelf();
             builder.Register<ProjectileFactory>(Lifetime.Singleton).AsSelf();
             builder.Register<UnitFactory>(Lifetime.Singleton).AsSelf();
@@ -84,8 +81,7 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterSO(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_levelsConfig).AsSelf();
-            builder.RegisterInstance(_othersPrefabConfig).AsSelf();
+            builder.RegisterInstance(_environmentConfig).AsSelf();
             builder.RegisterInstance(_unitPrefabConfig).AsSelf();
             builder.RegisterInstance(_buildingPrefabConfig).AsSelf();
             builder.RegisterInstance(_projectilePrefabConfig).AsSelf();
@@ -97,7 +93,6 @@ namespace _Project.Scripts._VContainer
             builder.RegisterInstance(_settingsService).As<IInitializable>().AsSelf();
             builder.RegisterInstance(_poolsManager).AsSelf();
             builder.RegisterInstance(_applicationEventsHandler).AsSelf();
-            builder.Register<ResetLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             

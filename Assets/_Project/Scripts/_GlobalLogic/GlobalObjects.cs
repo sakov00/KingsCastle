@@ -1,4 +1,4 @@
-using _Project.Animation.CameraLogic;
+using _Project.Scripts.GameObjects;
 using UnityEngine;
 
 namespace _Project.Scripts._GlobalLogic
@@ -7,9 +7,9 @@ namespace _Project.Scripts._GlobalLogic
     {
         public static GlobalObjects Instance { get; private set; }
         
-        public static CameraController CameraController => Instance.cameraController;
+        public static CameraController CameraController => Instance._cameraController;
         
-        [SerializeField] private CameraController cameraController;
+        [SerializeField] private CameraController _cameraController;
         
         private void Awake()
         {

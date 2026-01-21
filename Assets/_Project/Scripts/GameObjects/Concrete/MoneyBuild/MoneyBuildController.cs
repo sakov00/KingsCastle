@@ -1,12 +1,14 @@
 using _Project.Scripts.GameObjects.Abstract;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using VContainer;
 using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Concrete.MoneyBuild
 {
     public class MoneyBuildController : BuildController
     {
+        [Inject] private GameManager _gameManager;
         [field: SerializeField] public MoneyBuildModel Model { get; private set; }
         [field: SerializeField] public MoneyBuildingView View { get; private set; }
         protected override BuildModel BuildModel => Model;
@@ -19,7 +21,7 @@ namespace _Project.Scripts.GameObjects.Concrete.MoneyBuild
             Model.CurrentHealth = Model.MaxHealth;
             
             View.Initialize();
-            AppData.LevelEvents.WinEvent += AddMoneyToPlayer;
+            _gameManager.WinEvent += AddMoneyToPlayer;
             return default;
         }
 
@@ -44,7 +46,7 @@ namespace _Project.Scripts.GameObjects.Concrete.MoneyBuild
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
         {
             base.Dispose(returnToPool, clearFromRegistry);
-            AppData.LevelEvents.WinEvent -= AddMoneyToPlayer;
+            _gameManager.WinEvent -= AddMoneyToPlayer;
         }
     }
 }

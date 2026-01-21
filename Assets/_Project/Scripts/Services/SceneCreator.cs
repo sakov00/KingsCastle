@@ -19,7 +19,6 @@ namespace _Project.Scripts.Services
         [Inject] private BuildPool _buildPool;
         [Inject] private UnitPool _unitPool;
         [Inject] private UnitFactory _unitFactory;
-        [Inject] private OthersFactory _othersFactory;
         [Inject] private EnvironmentFactory _environmentFactory;
         
         private static readonly Dictionary<Type, int> TypePriority = new()
@@ -49,8 +48,6 @@ namespace _Project.Scripts.Services
                         _environmentFactory.CreateTerrain(terrainModel.SavePosition, terrainModel.SaveRotation),
                     EnemyRoadModel enemyRoadModel => 
                         _environmentFactory.CreateRoads(enemyRoadModel.SavePosition, enemyRoadModel.SaveRotation),
-                    BuildingZoneModel buildingZoneModel => 
-                        _othersFactory.CreateBuildingZone(buildingZoneModel.SavePosition, buildingZoneModel.SaveRotation),
                     _ => null
                 };
 

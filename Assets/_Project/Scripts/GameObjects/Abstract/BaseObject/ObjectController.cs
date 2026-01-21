@@ -12,17 +12,15 @@ using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject
 {
-    public abstract class ObjectController : MonoBehaviour, ISavableController, IPoolableDispose, IId, IKilled
+    public abstract class ObjectController : MonoBehaviour, ISavableController, IPoolableDispose, IKilled
     {
         [Inject] protected AppData AppData;
-        [Inject] protected IdsRegistry IdsRegistry;
         [Inject] protected LiveRegistry LiveRegistry;
         [Inject] protected SaveRegistry SaveRegistry;
         
         protected abstract ObjectModel ObjectModel { get; }
         protected abstract ObjectView ObjectView { get; }
         
-        public int Id { get => ObjectModel.Id; set => ObjectModel.Id = value; }
         public float HeightObject { get; set; }
         public WarSide WarSide => ObjectModel.WarSide;
         public float CurrentHealth { get => ObjectModel.CurrentHealth; set => ObjectModel.CurrentHealth = value; }
@@ -45,7 +43,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         
         public virtual UniTask InitializeAsync()
         {
-            IdsRegistry.Register(this);
             LiveRegistry.Register(this);
             SaveRegistry.Register(this);
             Dispose(false, false);
@@ -63,7 +60,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
             }
             if (clearFromRegistry)
             {
-                IdsRegistry.Unregister(this);
                 LiveRegistry.Unregister(this);
                 SaveRegistry.Unregister(this);
             }

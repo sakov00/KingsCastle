@@ -5,8 +5,6 @@ using MemoryPack;
 using UnityEngine;
 using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 using SplineContainerData = _Project.Scripts.DTO.SplineContainerData;
-using Vector2Scaled = _Project.Scripts.DTO.Vector2Scaled;
-using Vector3Scaled = _Project.Scripts.DTO.Vector3Scaled;
 
 namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
 {
@@ -19,10 +17,6 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
         [MemoryPackInclude] public List<Vector3> WorldPositions { get; set; } = new();
         [MemoryPackInclude] public int CurrentIndex { get; set; }
         [MemoryPackInclude] public float ElapsedTime { get; set; }
-        [MemoryPackInclude] public Vector3Scaled[] Vertices { get; set; }
-        [MemoryPackInclude] public Vector3Scaled[] Normals { get; set; }
-        [MemoryPackInclude] public Vector2Scaled[] UVs { get; set; }
-        [MemoryPackInclude] public ushort[] Triangles { get; set; }
         [MemoryPackInclude] public Vector3 SavePosition { get; set; }
         [MemoryPackInclude] public Quaternion SaveRotation { get; set; }
         
@@ -34,10 +28,6 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
             WorldPositions = objectModel.WorldPositions;
             CurrentIndex = objectModel.CurrentIndex;
             ElapsedTime = objectModel.ElapsedTime;
-            Vertices = objectModel.Vertices;
-            Normals = objectModel.Normals;
-            UVs = objectModel.UVs;
-            Triangles = objectModel.Triangles;
             SavePosition = objectModel.SavePosition;
             SaveRotation = objectModel.SaveRotation;
         }
@@ -51,10 +41,6 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
                 WorldPositions = WorldPositions,
                 CurrentIndex = CurrentIndex,
                 ElapsedTime = ElapsedTime,
-                Vertices = Vertices,
-                Normals = Normals,
-                UVs = UVs,
-                Triangles = Triangles,
                 SavePosition = SavePosition,
                 SaveRotation = SaveRotation
             };

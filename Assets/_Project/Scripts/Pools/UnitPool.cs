@@ -35,7 +35,6 @@ namespace _Project.Scripts.Pools
             else
             {
                 unit = _unitFactory.CreateUnit(unitType, position, rotation);
-                
             }
             unit.transform.SetParent(null);
             return unit;

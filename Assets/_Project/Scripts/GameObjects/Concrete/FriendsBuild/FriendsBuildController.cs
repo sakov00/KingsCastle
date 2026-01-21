@@ -47,7 +47,7 @@ namespace _Project.Scripts.GameObjects.Concrete.FriendsBuild
             }
             else
             {
-                FriendsGroup = (FriendsGroupController)IdsRegistry.Get(Model.FriendsGroupId);
+                // FriendsGroup = (FriendsGroupController)IdsRegistry.Get(Model.FriendsGroupId);
             }
             FriendsGroup.UnitOnKilled += CheckRemovedUnit;
         }
