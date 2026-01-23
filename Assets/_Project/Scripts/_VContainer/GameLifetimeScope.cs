@@ -1,10 +1,10 @@
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Factories;
-using _Project.Scripts.GameObjects.ActionSystems;
 using _Project.Scripts.Pools;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
+using _Project.Scripts.ServicesGameplay;
 using _Project.Scripts.SO;
 using UnityEngine;
 using VContainer;
@@ -20,7 +20,7 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
         
         [Header("Configs")]
-        [SerializeField] protected EnvironmentConfig _environmentConfig;
+        [SerializeField] protected LevelConfig _levelConfig;
         [SerializeField] protected UnitPrefabConfig _unitPrefabConfig;
         [SerializeField] protected BuildingPrefabConfig _buildingPrefabConfig;
         [SerializeField] protected ProjectilePrefabConfig _projectilePrefabConfig;
@@ -81,7 +81,7 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterSO(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_environmentConfig).AsSelf();
+            builder.RegisterInstance(_levelConfig).AsSelf();
             builder.RegisterInstance(_unitPrefabConfig).AsSelf();
             builder.RegisterInstance(_buildingPrefabConfig).AsSelf();
             builder.RegisterInstance(_projectilePrefabConfig).AsSelf();
@@ -96,7 +96,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             
-            builder.Register<SpatialDetectionSystem>(Lifetime.Singleton).AsSelf().As<ITickable>();
+            builder.Register<SpatialDetectionService>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }
     }
 }

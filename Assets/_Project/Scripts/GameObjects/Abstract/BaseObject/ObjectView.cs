@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject
 {
-    public abstract class ObjectView : MonoBehaviour
+    public abstract class ObjectView
     {
+        [SerializeField] protected Transform _transform;
         [SerializeField] protected Renderer _objRenderer;
         [SerializeField] protected UniversalBar _healthBar;
         [SerializeField] protected Tooltip _tooltip;
@@ -13,13 +14,13 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
 
         public virtual void Initialize()
         {
-            transform.SetParent(null);
-            gameObject.SetActive(true);
+            _transform.SetParent(null);
+            _transform.gameObject.SetActive(true);
         }
 
         public void UpdateHealthBar(float currentHealth, float maxHealth)
         {
-            _healthBar.UpdateBar(currentHealth, maxHealth);
+            _healthBar?.UpdateBar(currentHealth, maxHealth);
         }
 
         public void UpdateTooltip(int currentLvl, int? costUpgrade)

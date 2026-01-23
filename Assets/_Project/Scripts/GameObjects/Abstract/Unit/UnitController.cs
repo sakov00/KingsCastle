@@ -9,56 +9,61 @@ using VContainer;
 
 namespace _Project.Scripts.GameObjects.Abstract.Unit
 {
-    public abstract class UnitController : ObjectController, IFightController
+    public abstract class UnitController<TModel, TView> : UnitController
+        where TModel : UnitModel
+        where TView : UnitView 
+    {
+        protected new TModel Model => (TModel)base.Model;
+        protected new TView View => (TView)base.View;
+    }
+    
+    public abstract class UnitController : ObjectController<UnitModel, UnitView>
     {
         [Inject] protected UnitPool UnitPool;
 
-        protected abstract UnitModel UnitModel { get; }
-        protected abstract UnitView UnitView { get; }
-        protected override ObjectModel ObjectModel => UnitModel;
-        protected override ObjectView ObjectView => UnitView;
-        public IFightModel FightModel => UnitModel;
-        public IFightView FightView => UnitView;
-        
         public Action<UnitController> OnKilled;
-        public UnitType UnitType => UnitModel.UnitType;
-
+        public UnitType UnitType => Model.UnitType;
+        
         public void SetWayToPoint(List<Vector3> waypoints)
         {
-            UnitModel.WayToAim = waypoints;
+            Model.WayToAim = waypoints;
         }
         
         public void Select()
         {
-            UnitView.EnableOutline(true);
+            View.EnableOutline(true);
         }
 
         public void Deselect()
         {
-            UnitView.EnableOutline(false);
+            View.EnableOutline(false);
         }
 
         public void MoveTo(Vector3 position)
         {
-            UnitView.Agent.enabled = false;
+            View.Agent.enabled = false;
             transform.position = position;
-            UnitView.Agent.enabled = true;
+            View.Agent.enabled = true;
         }
 
         public override void Killed()
         {
             Dispose();
         }
-
+        
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
         {
-            base.Dispose(returnToPool, clearFromRegistry);
             if (returnToPool)
             {
                 UnitPool.Return(this);
                 OnKilled?.Invoke(this);
                 OnKilled = null;
-                UnitModel.AimObject = null;
+                Model.AimObject = null;
+            }
+            if (clearFromRegistry)
+            {
+                LiveRegistry.Unregister(this);
+                SaveRegistry.Unregister(this);
             }
         }
     }

@@ -1,7 +1,8 @@
 using System.Linq;
 using _Project.Scripts.Enums;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.GameObjects.Abstract;
-using _Project.Scripts.GameObjects.Concrete.BuildingZone;
+using _Project.Scripts.GameObjects.Abstract.Build;
 using _Project.Scripts.SO;
 using UnityEngine;
 using VContainer;

@@ -1,8 +1,6 @@
 using _Project.Scripts._VContainer;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
-using _Project.Scripts.GameObjects.Abstract.Unit;
-using _Project.Scripts.GameObjects.Concrete.Player;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
 using UnityEngine;
@@ -36,12 +34,12 @@ namespace _Project.Scripts.GameObjects.Additional.Projectiles
 
             if (target != null && target.WarSide != OwnerWarSide)
             {
-                target.CurrentHealth -= Damage;
-                ReturnToPool();
-                if (Owner is PlayerController playerController)
-                    playerController.AddUltimateValue();
-                if (target.CurrentHealth <= 0)
-                    target.Killed();
+                // target.CurrentHealth -= Damage;
+                // ReturnToPool();
+                // if (Owner is PlayerController playerController)
+                //     playerController.AddUltimateValue();
+                // if (target.CurrentHealth <= 0)
+                //     target.Killed();
                 
             }
             else if (target != null)

@@ -3,19 +3,22 @@ using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.Pools;
 using VContainer;
 
-namespace _Project.Scripts.GameObjects.Abstract
+namespace _Project.Scripts.GameObjects.Abstract.Build
 {
-    public abstract class BuildController : ObjectController
+    public abstract class BuildController<TModel, TView> : BuildController
+        where TModel : BuildModel
+        where TView : BuildView 
+    {
+        protected new TModel Model => (TModel)base.Model;
+        protected new TView View => (TView)base.View;
+    }
+    
+    public abstract class BuildController : ObjectController<BuildModel, BuildView>
     {
         [Inject] protected BuildPool BuildPool;
         
-        protected abstract BuildModel BuildModel { get; }
-        protected abstract BuildView BuildView { get; }
-        protected override ObjectModel ObjectModel => BuildModel;
-        protected override ObjectView ObjectView => BuildView;
-
-        public BuildType BuildType => BuildModel.BuildType;
-        public int BuildPrice => BuildModel.BuildPrice;
+        public int BuildPrice => Model.BuildPrice;
+        public BuildType BuildType => Model.BuildType;
         
         public override void Killed()
         {
@@ -24,8 +27,12 @@ namespace _Project.Scripts.GameObjects.Abstract
         
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
         {
-            base.Dispose(returnToPool, clearFromRegistry);
             if(returnToPool) BuildPool.Return(this);
+            if (clearFromRegistry)
+            {
+                LiveRegistry.Unregister(this);
+                SaveRegistry.Unregister(this);
+            }
         }
     }
 }

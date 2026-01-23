@@ -72,7 +72,7 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
             AttackHitEvent?.Invoke();
         }
 
-        public Vector3 GetPosition() => transform.position;
-        public Vector3 GetScale() => transform.localScale;
+        public Vector3 GetPosition() => _transform.position;
+        public Vector3 GetScale() => _transform.localScale;
     }
 }

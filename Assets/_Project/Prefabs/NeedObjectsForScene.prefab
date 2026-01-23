@@ -65,8 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 67d77d891c33b3646a66c7f78bec5827, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -584,12 +584,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e13ed7f92754800adb7dacc92162ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CameraFollow>k__BackingField:
-    _offset: {x: 0, y: 20, z: -12}
-    _followSpeed: 5
-    _returnSpeed: 30
-    _limitSecondsReturn: 1
   <CurrentCamera>k__BackingField: {fileID: 908287483260095829}
+  _offset: {x: 0, y: 20, z: -12}
+  _followSpeed: 5
+  _returnSpeed: 30
+  _limitSecondsReturn: 1
 --- !u!1 &4281021999295957063
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,8 +876,7 @@ MonoBehaviour:
   _settingsService: {fileID: 4204396160017081864}
   _poolsManager: {fileID: 5053060504112252011}
   _applicationEventsHandler: {fileID: 5090804477363207933}
-  _levelsConfig: {fileID: 11400000, guid: f69ef2b7f255c2047b2dfe2894252877, type: 2}
-  _othersPrefabConfig: {fileID: 11400000, guid: be087a3e5732a8242b47d954dfa1775d, type: 2}
+  _levelConfig: {fileID: 11400000, guid: f69ef2b7f255c2047b2dfe2894252877, type: 2}
   _unitPrefabConfig: {fileID: 11400000, guid: 9768599ec48076349993a7fe900a6ef2, type: 2}
   _buildingPrefabConfig: {fileID: 11400000, guid: 4707147491c3e5b438d235a1093e9f5d, type: 2}
   _projectilePrefabConfig: {fileID: 11400000, guid: 9c14b83fbb27999448d2c0fddf7c6d9a, type: 2}
@@ -928,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384282b0c849488bb412e66367fbf90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 138752687269671048}
+  _cameraController: {fileID: 138752687269671048}
 --- !u!1 &7669081922399916726
 GameObject:
   m_ObjectHideFlags: 0

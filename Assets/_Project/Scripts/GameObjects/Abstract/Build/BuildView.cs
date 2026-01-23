@@ -1,7 +1,7 @@
 using System;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 
-namespace _Project.Scripts.GameObjects.Abstract
+namespace _Project.Scripts.GameObjects.Abstract.Build
 {
     [Serializable]
     public abstract class BuildView : ObjectView

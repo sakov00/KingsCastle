@@ -1,8 +1,8 @@
 using System.Linq;
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.Enums;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.GameObjects.Abstract.Unit;
-using _Project.Scripts.GameObjects.Concrete.FriendsGroup;
 using _Project.Scripts.SO;
 using UnityEngine;
 using VContainer;

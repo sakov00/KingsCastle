@@ -1,44 +1,56 @@
-using System;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
-using UniRx.Toolkit;
 using UnityEngine;
 using VContainer;
-using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject
 {
+    public abstract class ObjectController<TModel, TView> : ObjectController
+        where TModel : ObjectModel
+        where TView : ObjectView 
+    {
+        protected TModel Model => (TModel)BaseModel;
+        protected TView View => (TView)BaseView;
+
+        protected virtual void FixedUpdate()
+        {
+            View.UpdateHealthBar(Model.CurrentHealth, Model.MaxHealth);
+        }
+    }
+
     public abstract class ObjectController : MonoBehaviour, ISavableController, IPoolableDispose, IKilled
     {
         [Inject] protected AppData AppData;
         [Inject] protected LiveRegistry LiveRegistry;
         [Inject] protected SaveRegistry SaveRegistry;
         
-        protected abstract ObjectModel ObjectModel { get; }
-        protected abstract ObjectView ObjectView { get; }
+        [SerializeReference, SubclassSelector]
+        private ObjectModel _model;
         
-        public float HeightObject { get; set; }
-        public WarSide WarSide => ObjectModel.WarSide;
-        public float CurrentHealth { get => ObjectModel.CurrentHealth; set => ObjectModel.CurrentHealth = value; }
+        [SerializeReference, SubclassSelector]
+        private ObjectView _view;
 
-        private void Awake()
+        public WarSide WarSide => BaseModel.WarSide;
+
+        protected ObjectModel BaseModel
         {
-            HeightObject = ObjectView.GetHeightObject();
+            get { return _model; } 
+            set { _model = value; }
+        }
+    
+        protected ObjectView BaseView
+        {
+            get { return _view; } 
+            set { _view = value; }
+        }
+    
+        protected virtual void Awake()
+        {
             InjectManager.Inject(this);
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            ObjectView.UpdateHealthBar(ObjectModel.CurrentHealth, ObjectModel.MaxHealth);
-        }
-        
-        private void OnDestroy()
-        {
-            Dispose(false);
         }
         
         public virtual UniTask InitializeAsync()
@@ -49,20 +61,20 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
             return default;
         }
         
-        public abstract ISavableModel GetSavableModel();
-        public abstract void SetSavableModel(ISavableModel model);
-        public abstract void Killed();
-        public virtual void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
+        private void OnDestroy()
         {
-            if (returnToPool)
-            {
-                ObjectModel.CurrentHealth = ObjectModel.MaxHealth;
-            }
-            if (clearFromRegistry)
-            {
-                LiveRegistry.Unregister(this);
-                SaveRegistry.Unregister(this);
-            }
+            Dispose(false);
         }
+        
+        public ISavableModel GetSavableModel() => _model;
+        public void SetSavableModel(ISavableModel savableModel)
+        {
+            _model.SavePosition = transform.position;
+            _model.SaveRotation = transform.rotation;
+            _model = (ObjectModel)savableModel;
+        }
+
+        public abstract void Killed();
+        public abstract void Dispose(bool returnToPool = true, bool clearFromRegistry = true);
     }
 }

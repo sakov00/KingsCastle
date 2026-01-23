@@ -2,8 +2,10 @@ using System;
 using System.Linq;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
+using _Project.Scripts.GameObjects.Abstract.Build;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.Additional.EnemyRoads;
 using _Project.Scripts.Interfaces;
@@ -77,7 +79,7 @@ namespace _Project.Scripts
         {
             _appData.LevelData.IsFighting = true;
             _appData.LevelData.ObjectsForRestoring = _saveRegistry.GetAll()
-                .Select(o => o.GetSavableModel().GetSaveData()).ToList();
+                .Select(o => o.GetSavableModel()).ToList();
             
             _saveRegistry.GetAllByType<EnemyRoadController>().ForEach(x => x.StartSpawn());
             
@@ -97,7 +99,7 @@ namespace _Project.Scripts
         
         private void TryInvokeMainBuildDestroyed(ObjectController objectController)
         {
-            if (objectController is BuildController build && build.BuildType == BuildType.MainBuild)
+            if (objectController is MainBuildController)
                 FailEvent?.Invoke();
         }
         

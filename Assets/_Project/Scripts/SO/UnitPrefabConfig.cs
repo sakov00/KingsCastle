@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.GameObjects.Abstract.Unit;
-using _Project.Scripts.GameObjects.Concrete.FriendsGroup;
 using UnityEngine;
 
 namespace _Project.Scripts.SO

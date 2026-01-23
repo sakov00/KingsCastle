@@ -17,7 +17,6 @@ namespace _Project.Scripts.Interfaces
         public float AllAnimAttackTime { get; set; }
         public float AnimAttackTime { get; set; }
         public float DetectionRadius { get; set; }
-        public TypeAttack TypeAttack { get; set; }
         public ObjectController AimObject { get; set; }
     }
 }

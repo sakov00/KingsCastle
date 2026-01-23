@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Factories;
-using _Project.Scripts.GameObjects.Abstract;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.GameObjects.Additional.EnemyRoads;
 using _Project.Scripts.GameObjects.Additional.LevelEnvironment.Terrain;
-using _Project.Scripts.GameObjects.Concrete.BuildingZone;
-using _Project.Scripts.GameObjects.Concrete.FriendsGroup;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
 using Cysharp.Threading.Tasks;
 using VContainer;
+using BuildingZoneModel = _Project.Scripts.GameObjects.BuildingZoneModel;
+using BuildModel = _Project.Scripts.GameObjects.Abstract.Build.BuildModel;
+using FriendsGroupModel = _Project.Scripts.GameObjects.FriendsGroupModel;
 
 namespace _Project.Scripts.Services
 {

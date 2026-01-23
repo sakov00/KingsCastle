@@ -12,7 +12,7 @@ namespace _Project.Scripts.Factories
     public class EnvironmentFactory
     {
         [Inject] private IObjectResolver _resolver;
-        [Inject] private EnvironmentConfig _environmentConfig;
+        [Inject] private LevelConfig _levelConfig;
         
         public EnvironmentController CreateEnvironment(EnvironmentType environmentType, Vector3 position, Quaternion rotation = default)
         {
@@ -28,12 +28,12 @@ namespace _Project.Scripts.Factories
 
         public TerrainController CreateTerrain(Vector3 position = default, Quaternion rotation = default)
         {
-            return _resolver.Instantiate(_environmentConfig.terrainPrefab, position, rotation);
+            return _resolver.Instantiate(_levelConfig.terrainPrefab, position, rotation);
         }
         
         public EnemyRoadController CreateRoads(Vector3 position = default, Quaternion rotation = default)
         {
-            return _resolver.Instantiate(_environmentConfig.roadPrefab, position, rotation);
+            return _resolver.Instantiate(_levelConfig.roadPrefab, position, rotation);
         }
     }
 }
