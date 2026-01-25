@@ -20,15 +20,29 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
     [MemoryPackUnion(8, typeof(FlyingModel))]
     public abstract partial class ObjectModel : ISavableModel
     {
-        [MemoryPackInclude][field:SerializeField] public WarSide WarSide { get; protected set; }
-        
-        [field: Header("Object Data")] 
-        [MemoryPackIgnore][field:SerializeField] public float DelayRegeneration { get; set; } = 3f;
-        [MemoryPackIgnore][field:SerializeField] public float RegenerateHealthInSecond { get; set; } = 5f;
-        [MemoryPackInclude][field:SerializeField] public int SecondsWithoutDamage { get; set; }
-        [MemoryPackInclude][field: SerializeField] public float MaxHealth { get; set; } = 100f;
-        [MemoryPackInclude][field: SerializeField] public float CurrentHealth { get; set; } = 100f;
         [MemoryPackInclude] public Vector3 SavePosition { get; set; }
         [MemoryPackInclude] public Quaternion SaveRotation { get; set; }
+        
+        [field: Header("Object Default Data")] 
+        [MemoryPackInclude][field:SerializeField] public WarSide WarSide { get; protected set; }
+        [MemoryPackInclude][field:SerializeField] protected float _maxHealthDefault = 100f;
+        [MemoryPackInclude][field:SerializeField] protected float _delayRegenerationDefault = 3f;
+        [MemoryPackInclude][field:SerializeField] protected float _regenerateHealthInSecondDefault = 5f;
+        
+        [field: Header("Object Changeable Data")]  
+        [MemoryPackInclude][field:SerializeField] protected float MaxHealthBonus { get; set; } = 1f;
+        [MemoryPackInclude][field:SerializeField] protected float DelayRegenerationBonus { get; set; } = 1f;
+        [MemoryPackInclude][field:SerializeField] protected float RegenerateHealthInSecondBonus { get; set; } = 1f;
+        [MemoryPackInclude][field:SerializeField] protected float _currentHealth = 100f;
+
+        public virtual float CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = value;
+        }
+
+        public virtual float MaxHealth => _maxHealthDefault * MaxHealthBonus;
+        public virtual float DelayRegeneration => _delayRegenerationDefault * DelayRegenerationBonus;
+        public virtual float RegenerateHealthInSecond => _regenerateHealthInSecondDefault * RegenerateHealthInSecondBonus;
     }
 }

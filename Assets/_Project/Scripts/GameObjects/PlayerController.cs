@@ -63,7 +63,7 @@ namespace _Project.Scripts.GameObjects
             if (Model.IsActiveUltimate == false && Model.CurrentValueUltimate == Model.MaxValueUltimate)
             {
                 Model.IsActiveUltimate = true;
-                Model.DamageAmount *= Model.UltimateUpDamageModifier;
+                // Model.DamageAmount *= Model.UltimateUpDamageModifier;
                 _gameTimer.Subscribe(1f, DisableUltimate);
             }
         }
@@ -74,7 +74,7 @@ namespace _Project.Scripts.GameObjects
             if (Model.CurrentTimeUltimate == Model.DurationUltimate)
             {
                 Model.IsActiveUltimate = false;
-                Model.DamageAmount = Model.DefaultDamageAmount;
+                // Model.DamageAmount = Model.DefaultDamageAmount;
                 Model.CurrentValueUltimate = 0;
                 Model.CurrentTimeUltimate = 0;
                 _gameTimer.Unsubscribe(DisableUltimate);
@@ -121,7 +121,7 @@ namespace _Project.Scripts.GameObjects
             base.Dispose(returnToPool, clearFromRegistry);
             if (returnToPool)
             {
-                Model.DamageAmount = Model.DefaultDamageAmount;
+                // Model.DamageAmount = Model.DefaultDamageAmount;
                 Model.IsActiveUltimate = false;
                 Model.IsKilled = false;
                 Model.IsNoDamageable = false;

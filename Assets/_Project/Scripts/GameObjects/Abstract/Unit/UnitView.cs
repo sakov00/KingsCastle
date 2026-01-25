@@ -7,16 +7,13 @@ using UnityEngine.AI;
 
 namespace _Project.Scripts.GameObjects.Abstract.Unit
 {
-    public class UnitView : ObjectView, IFightView
+    public class UnitView : ObjectView
     {
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
         private static readonly int IsAttack = Animator.StringToHash("IsAttack");
 
         [SerializeField] private Animator _animator;
         [field: SerializeField] public NavMeshAgent Agent { get; private set; }
-        [field: SerializeField] public ProjectileType ProjectileType { get; set; }
-        [field: SerializeField] public Transform FirePoint { get; set; }
-        [field: SerializeField] public float ProjectileSpeed { get; set; } = 40f;
 
         public event Action AttackHitEvent;
 

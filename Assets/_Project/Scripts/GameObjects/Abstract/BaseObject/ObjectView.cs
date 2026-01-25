@@ -9,7 +9,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         [SerializeField] protected Transform _transform;
         [SerializeField] protected Renderer _objRenderer;
         [SerializeField] protected UniversalBar _healthBar;
-        [SerializeField] protected Tooltip _tooltip;
         [SerializeField] protected Outline _outline;
 
         public virtual void Initialize()
@@ -21,11 +20,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         public void UpdateHealthBar(float currentHealth, float maxHealth)
         {
             _healthBar?.UpdateBar(currentHealth, maxHealth);
-        }
-
-        public void UpdateTooltip(int currentLvl, int? costUpgrade)
-        {
-            _tooltip.UpdateTooltip(currentLvl, costUpgrade);
         }
 
         public float GetHeightObject()

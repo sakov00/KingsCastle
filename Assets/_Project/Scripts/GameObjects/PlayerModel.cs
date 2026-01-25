@@ -11,6 +11,7 @@ namespace _Project.Scripts.GameObjects
     [MemoryPackable]
     public partial class PlayerModel : UnitModel
     {
+        [MemoryPackInclude][field:SerializeField] public int SecondsWithoutDamage { get; set; }
         [field: Header("Resurrection")] 
         [MemoryPackIgnore][field:SerializeField] public int DurationTimeNoDamage { get; set; } = 2;
         [MemoryPackInclude][field:SerializeField] public int CurrentTimeNoDamage { get; set; }

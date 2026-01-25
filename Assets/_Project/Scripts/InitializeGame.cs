@@ -20,10 +20,10 @@ namespace _Project.Scripts
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            _windowsManager.ShowFastWindow<LoadingWindow>();
-            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
-            _windowsManager.ShowFastWindow<MainMenuWindow>();
-            _windowsManager.HideWindow<LoadingWindow>();
+            // _windowsManager.ShowFastWindow<LoadingWindow>();
+            // await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
+            // _windowsManager.ShowFastWindow<MainMenuWindow>();
+            // _windowsManager.HideWindow<LoadingWindow>();
         }
     }
 }

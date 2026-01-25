@@ -16,7 +16,7 @@ namespace _Project.Scripts.GameObjects.Abstract.Build
     public abstract class BuildController : ObjectController<BuildModel, BuildView>
     {
         [Inject] protected BuildPool BuildPool;
-        
+
         public int BuildPrice => Model.BuildPrice;
         public BuildType BuildType => Model.BuildType;
         

@@ -15,21 +15,30 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
     [MemoryPackUnion(3, typeof(FlyingModel))]
     public abstract partial class UnitModel : ObjectModel
     {
-        [MemoryPackIgnore][field: SerializeField] public UnitType UnitType { get; protected set; }
+        [field: Header("Unit Default Data")] 
+        [MemoryPackInclude][field: SerializeField] public UnitType UnitType { get; protected set; }
+        [MemoryPackInclude][field: SerializeField] protected float _moveSpeedDefault = 1f;
+        [MemoryPackInclude][field: SerializeField] protected float _rotationSpeedDefault = 1f;
+        [MemoryPackInclude][field: SerializeField] protected float _detectionRadiusDefault = 20f;
+        [MemoryPackInclude][field: SerializeField] protected float _attackRangeDefault = 10f;
+        [MemoryPackInclude][field: SerializeField] protected float _damageAmountDefault  = 10;
         
-        [field: Header("Movement")] 
-        [MemoryPackIgnore][field: SerializeField] public float MoveSpeed { get; set; } = 10f;
-        [MemoryPackIgnore][field: SerializeField] public float RotationSpeed { get; set; } = 10f;
-
-        [field: Header("Attack")] 
-        [MemoryPackIgnore][field: SerializeField] public float AttackRange { get; set; } = 10f;
-        [MemoryPackIgnore][field: SerializeField] public float DefaultDamageAmount { get; set; } = 10;
-        [MemoryPackInclude][field: SerializeField] public float DamageAmount { get; set; } = 10;
-        [MemoryPackIgnore][field: SerializeField] public float DetectionRadius { get; set; } = 20f;
+        [field: Header("Unit Changeable Data")]
+        [MemoryPackInclude][field: SerializeField] public float MoveSpeedBonus { get; set; } = 1f;
+        [MemoryPackInclude][field: SerializeField] public float RotationSpeedBonus { get; set; } = 1f;
+        [MemoryPackInclude][field: SerializeField] public float DetectionRadiusBonus { get; set; } = 1f;
+        [MemoryPackInclude][field: SerializeField] public float AttackRangeBonus { get; set; } = 1f;
+        [MemoryPackInclude][field: SerializeField] public float DamageAmountBonus { get; set; } = 1;
+        
+        [field: Header("Secondary Data")]
         [MemoryPackIgnore][field: SerializeField] public ObjectController AimObject { get; set; }
-        
-        [field: Header("Way Info")] 
         [MemoryPackInclude][field: SerializeField] public int CurrentWaypointIndex { get; set; }
         [MemoryPackInclude][field: SerializeField] public List<Vector3> WayToAim { get; set; }
+        
+        public virtual float MoveSpeed => _moveSpeedDefault * MoveSpeedBonus;
+        public virtual float RotationSpeed => _rotationSpeedDefault * RotationSpeedBonus;
+        public virtual float DetectionRadius => _detectionRadiusDefault * DetectionRadiusBonus;
+        public virtual float AttackRange => _attackRangeDefault * AttackRangeBonus;
+        public virtual float DamageAmount => _damageAmountDefault * DamageAmountBonus;
     }
 }

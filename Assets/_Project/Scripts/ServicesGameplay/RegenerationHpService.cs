@@ -31,12 +31,12 @@ namespace _Project.Scripts.ServicesGameplay
         {
             if (Mathf.Approximately(_objectModel.CurrentHealth, _objectModel.MaxHealth))
                 return;
-
-            if (_objectModel.SecondsWithoutDamage <= _objectModel.DelayRegeneration)
-            {
-                _objectModel.SecondsWithoutDamage++;
-                return;
-            }
+            //
+            // if (_objectModel.SecondsWithoutDamage <= _objectModel.DelayRegeneration)
+            // {
+            //     _objectModel.SecondsWithoutDamage++;
+            //     return;
+            // }
 
             _objectModel.CurrentHealth += _objectModel.RegenerateHealthInSecond;
             _objectView.UpdateHealthBar(_objectModel.CurrentHealth, _objectModel.MaxHealth);
