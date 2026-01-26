@@ -22,7 +22,7 @@ namespace _Project.Scripts.GameObjects
 
         public override void SetAttacking(bool isAttacking)
         {
-            OnAttackHit();
+
         }
 
         public void UpdateLoadBar(float currentValue, float maxValue)

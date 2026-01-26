@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -17,48 +16,40 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         protected new TView View => (TView)base.View;
     }
     
-    public abstract class UnitController : ObjectController<UnitModel, UnitView>
+    public abstract class UnitController : ObjectController<UnitModel, UnitView>, ISearchController, IMovable, IAttackable
     {
         [Inject] protected UnitPool UnitPool;
+        [field:SerializeField] public ObjectController CurrentAim { get; set; }
 
-        public Action<UnitController> OnKilled;
         public UnitType UnitType => Model.UnitType;
+        public Vector3 Position => transform.position;
+        public float DetectionRadius => Model.DetectionRadius;
+        public bool IsMoving => View.IsMoving;
+        public float StopDistance => Model.AttackRange;
+        public float AttackRange => Model.AttackRange;
+        public void MoveTo(Vector3 point) => View.MoveTo(point);
+        public void Stop() => View.Stop();
+        public void SetAttacking(bool isAttacking) => View.SetAttacking(isAttacking);
         
-        public void SetWayToPoint(List<Vector3> waypoints)
+        public virtual void Attack()
         {
-            Model.WayToAim = waypoints;
-        }
-        
-        public void Select()
-        {
-            View.EnableOutline(true);
+
         }
 
-        public void Deselect()
+        public override async UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f)
         {
-            View.EnableOutline(false);
-        }
-
-        public void MoveTo(Vector3 position)
-        {
-            View.Agent.enabled = false;
-            transform.position = position;
-            View.Agent.enabled = true;
-        }
-
-        public override void Killed()
-        {
+            Dispose(false, true);
+            View.RagdollIsActive(true, forceDirection, forceAmount);
+            await UniTask.Delay(2000);
             Dispose();
         }
-        
+
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
         {
             if (returnToPool)
             {
                 UnitPool.Return(this);
-                OnKilled?.Invoke(this);
-                OnKilled = null;
-                Model.AimObject = null;
+                CurrentAim = null;
             }
             if (clearFromRegistry)
             {

@@ -28,8 +28,8 @@ namespace _Project.Scripts.GameObjects
                 while (attempts < 10 && placedPositions.Exists(p => Vector3.Distance(p, newPos) < minDistance));
 
                 placedPositions.Add(newPos);
-                units[i].MoveTo(newPos);
-                units[i].SetWayToPoint(new List<Vector3> { units[i].transform.position });
+                // units[i].MoveTo(newPos);
+                // units[i].SetWayToPoint(new List<Vector3> { units[i].transform.position });
             }
         }
     }

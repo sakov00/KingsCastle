@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
 using _Project.Scripts.Registries;
-using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -31,7 +29,7 @@ namespace _Project.Scripts.GameObjects
         
         private CompositeDisposable _disposables;
 
-        public UniTask InitializeAsync()
+        public void Initialize()
         {
             InjectManager.Inject(this);
             _saveRegistry.Register(this);
@@ -41,18 +39,17 @@ namespace _Project.Scripts.GameObjects
             Units.ObserveAdd().Subscribe(addedUnit =>
             {
                 // Model.UnitIds.Add(addedUnit.Value.Id);
-                addedUnit.Value.OnKilled += OnKilledHandler;
+                // addedUnit.Value.OnKilled += OnKilledHandler;
             }).AddTo(_disposables);
             
             Units.ObserveRemove().Subscribe(removedUnit =>
             {
                 // Model.UnitIds.Remove(removedUnit.Value.Id);
                 UnitOnKilled?.Invoke(removedUnit.Value);
-                removedUnit.Value.OnKilled -= OnKilledHandler;
+                // removedUnit.Value.OnKilled -= OnKilledHandler;
             }).AddTo(_disposables);
             
             AddFriends();
-            return default;
         }
         
         private void OnKilledHandler(UnitController removedUnit)
@@ -67,8 +64,8 @@ namespace _Project.Scripts.GameObjects
                 for (int i = 0; i < 4; i++)
                 {
                     var unitController = _unitPool.Get(Model.UnitType, transform.position);
-                    unitController.SetWayToPoint(new List<Vector3> { transform.position });
-                    unitController.InitializeAsync();
+                    // unitController.SetWayToPoint(new List<Vector3> { transform.position });
+                    unitController.Initialize();
                     Units.Add(unitController);
                 }
 
@@ -86,14 +83,14 @@ namespace _Project.Scripts.GameObjects
         
         public void Select()
         {
-            foreach (var unit in Units)
-                unit.Select();
+            // foreach (var unit in Units)
+            //     unit.Select();
         }
-
+        
         public void Deselect()
         {
-            foreach (var unit in Units)
-                unit.Deselect();
+            // foreach (var unit in Units)
+            //     unit.Deselect();
         }
 
         public void MoveTo(Vector3 position)
@@ -117,7 +114,7 @@ namespace _Project.Scripts.GameObjects
             _disposables?.Dispose();
             UnitOnKilled = null;
             foreach (var unit in Units) 
-                unit.OnKilled -= OnKilledHandler;
+                // unit.OnKilled -= OnKilledHandler;
             // if(returnToPool) BuildPool.Return(this);
             if (clearFromRegistry)
             {

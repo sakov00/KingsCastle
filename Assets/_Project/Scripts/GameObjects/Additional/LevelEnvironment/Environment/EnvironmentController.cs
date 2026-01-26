@@ -1,9 +1,7 @@
-using System;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
@@ -21,10 +19,9 @@ namespace _Project.Scripts.GameObjects.Additional.LevelEnvironment.Environment
             InjectManager.Inject(this);
         }
         
-        public UniTask InitializeAsync()
+        public void Initialize()
         {
             _saveRegistry.Register(this);
-            return default;
         }
 
         public ISavableModel GetSavableModel()

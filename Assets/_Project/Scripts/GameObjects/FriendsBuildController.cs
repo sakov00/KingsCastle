@@ -3,7 +3,6 @@ using _Project.Scripts.Factories;
 using _Project.Scripts.GameObjects.Abstract.Build;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.Pools;
-using Cysharp.Threading.Tasks;
 using VContainer;
 
 namespace _Project.Scripts.GameObjects
@@ -16,16 +15,15 @@ namespace _Project.Scripts.GameObjects
         
         private FriendsGroupController FriendsGroup { get; set; }
 
-        public override UniTask InitializeAsync()
+        public override void Initialize()
         {
-            base.InitializeAsync();
+            base.Initialize();
             
             Model.CurrentHealth = Model.MaxHealth;
 
             SetFriendsGroup();
             
             View.Initialize();
-            return default;
         }
 
         private void SetFriendsGroup()

@@ -22,6 +22,7 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         [MemoryPackInclude][field: SerializeField] protected float _detectionRadiusDefault = 20f;
         [MemoryPackInclude][field: SerializeField] protected float _attackRangeDefault = 10f;
         [MemoryPackInclude][field: SerializeField] protected float _damageAmountDefault  = 10;
+        [MemoryPackInclude][field: SerializeField] protected float _powerAttackDefault = 10f;
         
         [field: Header("Unit Changeable Data")]
         [MemoryPackInclude][field: SerializeField] public float MoveSpeedBonus { get; set; } = 1f;
@@ -31,7 +32,6 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         [MemoryPackInclude][field: SerializeField] public float DamageAmountBonus { get; set; } = 1;
         
         [field: Header("Secondary Data")]
-        [MemoryPackIgnore][field: SerializeField] public ObjectController AimObject { get; set; }
         [MemoryPackInclude][field: SerializeField] public int CurrentWaypointIndex { get; set; }
         [MemoryPackInclude][field: SerializeField] public List<Vector3> WayToAim { get; set; }
         
@@ -40,5 +40,6 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         public virtual float DetectionRadius => _detectionRadiusDefault * DetectionRadiusBonus;
         public virtual float AttackRange => _attackRangeDefault * AttackRangeBonus;
         public virtual float DamageAmount => _damageAmountDefault * DamageAmountBonus;
+        public virtual float PowerAttack => _powerAttackDefault;
     }
 }

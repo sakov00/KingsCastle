@@ -55,7 +55,7 @@ namespace _Project.Scripts.Services
                     continue;
                 
                 savableController.SetSavableModel(model);
-                if(isInitialize) await savableController.InitializeAsync();
+                if(isInitialize) savableController.Initialize();
                 
                 await UniTask.Yield();
             }

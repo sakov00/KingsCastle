@@ -21,16 +21,16 @@ namespace _Project.Scripts.UI.Info
         
         public void UpdateBar(float currentValue, float maxValue) 
         {
-            if (currentValue < maxValue) 
+            if (currentValue <= 0 || currentValue > maxValue)
+            {
+                _universalBarRenderer.enabled = false;
+            }
+            else
             {
                 _universalBarRenderer.enabled = true;
                 BarLookAtCamera();
                 ChangeBarValue(currentValue, maxValue);
             } 
-            else 
-            {
-                _universalBarRenderer.enabled = false;
-            }
         }
 
         private void ChangeBarValue(float currentValue, float maxValue) 

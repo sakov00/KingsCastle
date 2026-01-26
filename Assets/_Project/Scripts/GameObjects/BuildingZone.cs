@@ -29,10 +29,9 @@ namespace _Project.Scripts.GameObjects
             InjectManager.Inject(this);
         }
 
-        public UniTask InitializeAsync()
+        public void Initialize()
         {
             _saveRegistry.Register(this);
-            return default;
         }
 
         public async UniTask TryBuy()
@@ -57,7 +56,7 @@ namespace _Project.Scripts.GameObjects
 
             _appData.LevelData.LevelMoney -= price;
             var build = _buildPool.Get(_model.BuildType, transform.position, transform.rotation);
-            build.InitializeAsync();
+            build.Initialize();
             Destroy();
         }
 

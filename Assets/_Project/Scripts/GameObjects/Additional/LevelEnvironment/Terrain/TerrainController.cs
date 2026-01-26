@@ -5,7 +5,6 @@ using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 using VContainer;
 using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
@@ -26,10 +25,10 @@ namespace _Project.Scripts.GameObjects.Additional.LevelEnvironment.Terrain
             InjectManager.Inject(this);
         }
         
-        public async UniTask InitializeAsync()
+        public void Initialize()
         {
             _saveRegistry.Register(this);
-            await ChangeTerrain();
+            ChangeTerrain().Forget();
         }
 
         public ISavableModel GetSavableModel()

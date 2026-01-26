@@ -1,11 +1,8 @@
 using System;
-using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
-using _Project.Scripts.Interfaces;
 using MemoryPack;
 using UnityEngine;
 using BuildModel = _Project.Scripts.GameObjects.Abstract.Build.BuildModel;
-using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects
 {

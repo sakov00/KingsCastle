@@ -13,16 +13,16 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         where TModel : ObjectModel
         where TView : ObjectView 
     {
-        protected TModel Model => (TModel)BaseModel;
-        protected TView View => (TView)BaseView;
+        protected new TModel Model => (TModel)base.Model;
+        protected new TView View => (TView)base.View;
 
         protected virtual void FixedUpdate()
         {
-            View.UpdateHealthBar(Model.CurrentHealth, Model.MaxHealth);
+            // View.UpdateHealthBar(Model.CurrentHealth, Model.MaxHealth);
         }
     }
 
-    public abstract class ObjectController : MonoBehaviour, ISavableController, IPoolableDispose, IKilled
+    public abstract class ObjectController : MonoBehaviour, ISavableController, IPoolableDispose
     {
         [Inject] protected AppData AppData;
         [Inject] protected LiveRegistry LiveRegistry;
@@ -34,15 +34,15 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         [SerializeReference, SubclassSelector]
         private ObjectView _view;
 
-        public WarSide WarSide => BaseModel.WarSide;
+        public WarSide WarSide => Model.WarSide;
 
-        protected ObjectModel BaseModel
+        public ObjectModel Model
         {
             get { return _model; } 
             set { _model = value; }
         }
     
-        protected ObjectView BaseView
+        public ObjectView View
         {
             get { return _view; } 
             set { _view = value; }
@@ -51,14 +51,14 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         protected virtual void Awake()
         {
             InjectManager.Inject(this);
+            Initialize();
         }
         
-        public virtual UniTask InitializeAsync()
+        public virtual void Initialize()
         {
             LiveRegistry.Register(this);
             SaveRegistry.Register(this);
             Dispose(false, false);
-            return default;
         }
         
         private void OnDestroy()
@@ -73,8 +73,21 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
             _model.SaveRotation = transform.rotation;
             _model = (ObjectModel)savableModel;
         }
+        
+        public virtual void TakeDamage(float damageAmount, Vector3 forceDirection = default, float forceAmount = 0f)
+        {
+            Model.CurrentHealth -= damageAmount;
 
-        public abstract void Killed();
+            if (Model.CurrentHealth < 0)
+                Model.CurrentHealth = 0;
+
+            if (Model.CurrentHealth <= 0)
+            {
+                Killed(forceDirection, forceAmount).Forget();
+            }
+        }
+
+        public abstract UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f);
         public abstract void Dispose(bool returnToPool = true, bool clearFromRegistry = true);
     }
 }

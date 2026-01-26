@@ -1,6 +1,8 @@
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.Pools;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 using VContainer;
 
 namespace _Project.Scripts.GameObjects.Abstract.Build
@@ -20,8 +22,9 @@ namespace _Project.Scripts.GameObjects.Abstract.Build
         public int BuildPrice => Model.BuildPrice;
         public BuildType BuildType => Model.BuildType;
         
-        public override void Killed()
+        public override async UniTask Killed(Vector3 forceDirection, float forceAmount = 0f)
         {
+            await UniTask.Delay(0);
             Dispose();
         }
         

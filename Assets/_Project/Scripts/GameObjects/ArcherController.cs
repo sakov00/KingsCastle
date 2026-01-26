@@ -1,45 +1,29 @@
-using _Project.Scripts.Enums;
+using _Project.Scripts.Factories;
 using _Project.Scripts.GameObjects.Abstract.Unit;
-using _Project.Scripts.ServicesGameplay;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
+using _Project.Scripts.Pools;
+using VContainer;
 
 namespace _Project.Scripts.GameObjects
 {
     public class ArcherController : UnitController<ArcherModel, ArcherView>
     {
-        
-        private AttackService _attackService;
-        private RegenerationHpService _regenerationHpService;
-        private UnitMovementService _unitMovementService;
-
-        protected override void FixedUpdate()
+        [Inject] private ProjectilePool _projectilePool;
+        public override void Initialize()
         {
-            base.FixedUpdate();
-            _unitMovementService?.MoveToAim();
-            _attackService?.Attack();
-        }
-
-        public override UniTask InitializeAsync()
-        {
-            base.InitializeAsync();
+            base.Initialize();
             
             Model.CurrentHealth = Model.MaxHealth;
-            
-            _unitMovementService = new UnitMovementService(Model, View, transform);
-            // _attackService = new AttackService(this, transform);
-            _regenerationHpService = new RegenerationHpService(Model, View);
-            
             View.Initialize();
-            return default;
         }
         
-        public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
+        public override void Attack()
         {
-            base.Dispose(returnToPool, clearFromRegistry);
-            _regenerationHpService?.Dispose();
-            _attackService?.Dispose();
+            var projectile = _projectilePool.Get(View.ProjectileType, View.FirePoint.position, View.FirePoint.rotation);
+            projectile.OwnerWarSide = Model.WarSide;
+            projectile.Damage = Model.DamageAmount;
+            projectile.PowerAttack = Model.PowerAttack;
+            projectile.Speed = View.ProjectileSpeed;
+            projectile.LaunchToPoint(CurrentAim.transform.position, CurrentAim);
         }
     }
 }

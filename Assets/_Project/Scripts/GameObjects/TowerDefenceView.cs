@@ -1,13 +1,12 @@
 using System;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.Build;
-using _Project.Scripts.Interfaces;
 using UnityEngine;
 
 namespace _Project.Scripts.GameObjects
 {
     [Serializable]
-    public class TowerDefenceView : BuildView, IFightView
+    public class TowerDefenceView : BuildView
     {
         [field: SerializeField] public ProjectileType ProjectileType { get; set; }
         [field: SerializeField] public Transform FirePoint { get; set; }

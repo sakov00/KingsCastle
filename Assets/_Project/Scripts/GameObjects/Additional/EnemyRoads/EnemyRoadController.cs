@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
-using _Project.Scripts.Enums;
 using _Project.Scripts.Extentions;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
 using _Project.Scripts.Registries;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Splines;
 using VContainer;
@@ -44,7 +42,7 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
             InjectManager.Inject(this);
         }
 
-        public UniTask InitializeAsync()
+        public void Initialize()
         {
             _saveRegistry.Register(this);
 
@@ -60,7 +58,6 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
             StartSpawn(false);
 
             _view.RefreshInfoRound(_splineContainer, _model.RoundEnemyList);
-            return default;
         }
 
         public ISavableModel GetSavableModel()
@@ -119,8 +116,8 @@ namespace _Project.Scripts.GameObjects.Additional.EnemyRoads
             var wayPoints = new List<Vector3>();
             foreach (var position in _model.WorldPositions) wayPoints.Add(position + new Vector3(offsetX, 0f, 0f));
             var enemyController = _unitPool.Get(enemyData.enemyType, wayPoints[0]);
-            enemyController.InitializeAsync();
-            enemyController.SetWayToPoint(wayPoints);
+            enemyController.Initialize();
+            // enemyController.SetWayToPoint(wayPoints);
         }
         
         public void Destroy() => Destroy(gameObject);

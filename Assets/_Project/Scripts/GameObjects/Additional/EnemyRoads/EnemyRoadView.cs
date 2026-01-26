@@ -5,7 +5,6 @@ using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using TMPro;
-using Unity.Mathematics;
 using Unity.Splines.Examples;
 using UnityEngine;
 using UnityEngine.Splines;

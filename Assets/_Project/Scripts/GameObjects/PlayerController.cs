@@ -1,12 +1,10 @@
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects.Abstract.Unit;
-using _Project.Scripts.Interfaces;
 using _Project.Scripts.ServicesGameplay;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
-using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects
 {
@@ -15,13 +13,12 @@ namespace _Project.Scripts.GameObjects
         [Inject] private AppData _appData;
         [Inject] private GameTimer _gameTimer;
         
-        private AttackService _attackService;
         private PlayerMovementService _playerMovementService;
         private RegenerationHpService _regenerationHpService;
 
-        public override UniTask InitializeAsync()
+        public override void Initialize()
         {
-            base.InitializeAsync();
+            base.Initialize();
             
             View.Initialize();
             View.UpdateLoadBar(Model.CurrentTimeResurrection, Model.DurationTimeResurrection);
@@ -32,7 +29,6 @@ namespace _Project.Scripts.GameObjects
             if (Model.IsKilled)
             {
                 Killed();
-                return default;
             }
 
             if(Model.IsNoDamageable)
@@ -42,13 +38,11 @@ namespace _Project.Scripts.GameObjects
             // _attackService = new AttackService(this, transform);
             _regenerationHpService = new RegenerationHpService(Model, View);
 
-            return default;
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            _attackService?.Attack();
             View.UpdateUltimateBar(Model.CurrentValueUltimate, Model.MaxValueUltimate);
         }
 
@@ -81,8 +75,9 @@ namespace _Project.Scripts.GameObjects
             }
         }
 
-        public override void Killed()
+        public override async UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f)
         {
+            await UniTask.Delay(1);
             Dispose(false,false);
             LiveRegistry.Unregister(this);
             Model.IsKilled = true;
@@ -98,7 +93,7 @@ namespace _Project.Scripts.GameObjects
                 Model.CurrentTimeResurrection = 0;
                 Model.CurrentHealth = Model.MaxHealth;
                 Model.IsKilled = false;
-                InitializeAsync();
+                Initialize();
                 Model.IsNoDamageable = true;
                 _gameTimer.Unsubscribe(TryReturnToGame);
                 _gameTimer.Subscribe(1f, DisableNoDamage);
@@ -135,7 +130,6 @@ namespace _Project.Scripts.GameObjects
             _gameTimer.Unsubscribe(TryReturnToGame);
             _playerMovementService = null;
             _regenerationHpService?.Dispose();
-            _attackService?.Dispose();
         }
     }
 }

@@ -1,9 +1,6 @@
 using _Project.Scripts.GameObjects.Abstract.Build;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using VContainer;
-using BuildModel = _Project.Scripts.GameObjects.Abstract.Build.BuildModel;
-using ISavableModel = _Project.Scripts.Interfaces.ISavableModel;
 
 namespace _Project.Scripts.GameObjects
 {
@@ -11,15 +8,14 @@ namespace _Project.Scripts.GameObjects
     {
         [Inject] private GameManager _gameManager;
         
-        public override UniTask InitializeAsync()
+        public override void Initialize()
         {
-            base.InitializeAsync();
+            base.Initialize();
             
             Model.CurrentHealth = Model.MaxHealth;
             
             View.Initialize();
             _gameManager.WinEvent += AddMoneyToPlayer;
-            return default;
         }
 
         private UniTaskVoid AddMoneyToPlayer()

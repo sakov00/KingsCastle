@@ -1,7 +1,5 @@
-using System;
-using _Project.Scripts.Enums;
+using System.Collections.Generic;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
-using _Project.Scripts.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,65 +9,90 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
     {
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
         private static readonly int IsAttack = Animator.StringToHash("IsAttack");
+        private static readonly int Rotate = Animator.StringToHash("Rotate");
 
         [SerializeField] private Animator _animator;
-        [field: SerializeField] public NavMeshAgent Agent { get; private set; }
-
-        public event Action AttackHitEvent;
-
-        private bool _isAttacking;
-        private bool _isWalking;
+        [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private List<Rigidbody> _allRigidbodies;
+        
+        public bool IsMoving => _animator != null && _animator.GetBool(IsWalking);
         
         public override void Initialize()
         {
             base.Initialize();
-            _isWalking = true;
-            _isAttacking = false;
-            UpdateAnimatorState();
+            RagdollIsActive(false);
         }
 
-        protected virtual void Update()
+        public void RagdollIsActive(bool isActive, Vector3? forceDirection = null, float forceAmount = 0f)
         {
             if (_animator == null) return;
-
-            var state = _animator.GetCurrentAnimatorStateInfo(0);
-            Agent.isStopped = !state.IsName("Walking");
+            _animator.enabled = !isActive;
+            _allRigidbodies.ForEach(rigidbody =>
+            {
+                rigidbody.isKinematic = !isActive;
+                
+                if (isActive && forceDirection.HasValue)
+                {
+                    rigidbody.AddForce(forceDirection.Value.normalized * forceAmount, ForceMode.Impulse);
+                }
+            });
         }
 
         public virtual void SetWalking(bool isWalking)
         {
-            if (_isWalking == isWalking) return;
-            _isWalking = isWalking;
-
-            if (isWalking)
-                _isAttacking = false;
-            UpdateAnimatorState();
+            if (_animator == null) return;
+            if (_animator.GetBool(IsWalking) == isWalking)
+                return;
+            
+            _animator.SetBool(IsWalking, isWalking);
         }
 
         public virtual void SetAttacking(bool isAttacking)
         {
-            if (_isAttacking == isAttacking) return;
-            _isAttacking = isAttacking;
-
-            if (isAttacking)
-                _isWalking = false;
-            UpdateAnimatorState();
+            if (_animator == null) return;
+            if (_animator.GetBool(IsAttack) == isAttacking)
+                return;
+            
+            _animator.SetBool(IsAttack, isAttacking);
         }
-
-        protected virtual void UpdateAnimatorState()
+        
+        public virtual void SetRotate()
         {
             if (_animator == null) return;
-
-            _animator.SetBool(IsWalking, _isWalking && !_isAttacking);
-            _animator.SetBool(IsAttack, _isAttacking);
+            _animator.SetTrigger(Rotate);
         }
-
-        public void OnAttackHit()
+        
+        public void Select()
         {
-            AttackHitEvent?.Invoke();
+            EnableOutline(true);
         }
 
-        public Vector3 GetPosition() => _transform.position;
-        public Vector3 GetScale() => _transform.localScale;
+        public void Deselect()
+        {
+            EnableOutline(false);
+        }
+
+        public void MoveTo(Vector3 point)
+        {
+            if (!_agent.enabled)
+                return;
+
+            _agent.isStopped = false;
+            _agent.SetDestination(point);
+
+            SetAttacking(false);
+            SetWalking(true);
+        }
+        
+        public void Stop()
+        {
+            if (!_agent.enabled)
+                return;
+
+            _agent.isStopped = true;
+            _agent.ResetPath();
+
+            SetWalking(false);
+        }
     }
 }
