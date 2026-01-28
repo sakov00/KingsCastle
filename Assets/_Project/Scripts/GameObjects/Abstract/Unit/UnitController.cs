@@ -27,9 +27,10 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         public bool IsMoving => View.IsMoving;
         public float StopDistance => Model.AttackRange;
         public float AttackRange => Model.AttackRange;
-        public void MoveTo(Vector3 point) => View.MoveTo(point);
+        public void MoveTo(Vector3 point) => View.MoveTo(CurrentAim.transform);
         public void Stop() => View.Stop();
         public void SetAttacking(bool isAttacking) => View.SetAttacking(isAttacking);
+        public Vector3 GetAttackPoint() => View.GetAttackPoint(CurrentAim.transform.position);
         
         public virtual void Attack()
         {

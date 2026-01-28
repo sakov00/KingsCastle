@@ -96,7 +96,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             
-            builder.Register<SpatialDetectionService>(Lifetime.Singleton).AsSelf().As<ITickable>();
+            builder.Register<DetectionService>(Lifetime.Singleton).AsSelf().As<ITickable>();
             builder.Register<MoveAllMovablesService>(Lifetime.Singleton).AsSelf().As<ITickable>();
             builder.Register<AttackAllAttackablesService>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }

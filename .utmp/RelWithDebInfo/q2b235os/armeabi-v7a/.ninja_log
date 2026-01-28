@@ -1,0 +1,45 @@
+# ninja log v5
+26	201	7911545848014282	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73a5e88f9ddf34e
+203	293	7911545848878809	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libswappywrapper.so	60cedd34705788a5
+9	1264	7911545858580019	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	6f7a8da830b4a529
+15	1272	7911545858620304	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	786a499c9b56f610
+22	1287	7911545858821567	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	90201156ef798ce0
+6	1298	7911545858932258	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ea3cd6f57ffbd347
+0	1372	7911545859665282	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	869e8c9ecbb70b4b
+18	1443	7911545860390693	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4fbd0c399d9730b8
+12	1589	7911545861835520	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e900a61df89b4fd0
+3	1689	7911545862830648	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	23662b5124dc124a
+1689	1749	7911545863471474	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libgame.so	d7c1b0387be32ab0
+40	218	7911546288099552	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73a5e88f9ddf34e
+219	308	7911546288977167	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libswappywrapper.so	60cedd34705788a5
+24	1247	7911546298330846	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	786a499c9b56f610
+27	1309	7911546298957347	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	6f7a8da830b4a529
+9	1326	7911546299133347	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ea3cd6f57ffbd347
+31	1357	7911546299435277	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	90201156ef798ce0
+13	1382	7911546299635804	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	869e8c9ecbb70b4b
+37	1489	7911546300735861	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4fbd0c399d9730b8
+21	1582	7911546301629508	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e900a61df89b4fd0
+17	1701	7911546302845791	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	23662b5124dc124a
+1701	1764	7911546303513126	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libgame.so	d7c1b0387be32ab0
+31	226	7911547597593616	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73a5e88f9ddf34e
+226	312	7911547598402080	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libswappywrapper.so	60cedd34705788a5
+14	1265	7911547607958853	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	6f7a8da830b4a529
+20	1279	7911547608089670	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	786a499c9b56f610
+8	1301	7911547608303194	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ea3cd6f57ffbd347
+5	1333	7911547608614492	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	869e8c9ecbb70b4b
+27	1341	7911547608679703	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	90201156ef798ce0
+23	1473	7911547609998802	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4fbd0c399d9730b8
+17	1579	7911547611057293	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e900a61df89b4fd0
+11	1667	7911547611905655	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	23662b5124dc124a
+1667	1732	7911547612602786	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libgame.so	d7c1b0387be32ab0
+59	484	7913103621289176	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73a5e88f9ddf34e
+484	567	7913103622089810	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libswappywrapper.so	60cedd34705788a5
+26	1898	7913103635384822	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	786a499c9b56f610
+32	1903	7913103635465205	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	6f7a8da830b4a529
+21	1916	7913103635596784	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ea3cd6f57ffbd347
+50	1934	7913103635767853	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	90201156ef798ce0
+7	1987	7913103636314665	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	869e8c9ecbb70b4b
+46	2023	7913103636668168	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4fbd0c399d9730b8
+38	2148	7913103637905786	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e900a61df89b4fd0
+17	2225	7913103638633767	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	23662b5124dc124a
+2225	2289	7913103639323512	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/q2b235os/obj/armeabi-v7a/libgame.so	d7c1b0387be32ab0

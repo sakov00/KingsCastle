@@ -1,5 +1,6 @@
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -36,17 +37,11 @@ namespace _Project.Scripts.ServicesGameplay
                 return;
             }
 
-            float sqrDist = (target.transform.position - attackable.Position).sqrMagnitude;
+            Vector3 attackPoint = attackable.GetAttackPoint();
+            float sqrDist = (attackPoint - attackable.Position).sqrMagnitude;
             float attackRangeSqr = attackable.AttackRange * attackable.AttackRange;
 
-            if (sqrDist <= attackRangeSqr)
-            {
-                attackable.SetAttacking(true);
-            }
-            else
-            {
-                attackable.SetAttacking(false);
-            }
+            attackable.SetAttacking(sqrDist <= attackRangeSqr);
         }
     }
 }

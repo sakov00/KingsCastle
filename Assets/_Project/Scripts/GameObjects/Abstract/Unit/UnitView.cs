@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
+using _Project.Scripts.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,12 +16,15 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private List<Rigidbody> _allRigidbodies;
         
+        private NavMeshPath _path;
+        
         public bool IsMoving => _animator != null && _animator.GetBool(IsWalking);
         
         public override void Initialize()
         {
             base.Initialize();
             RagdollIsActive(false);
+            _path = new NavMeshPath();
         }
 
         public void RagdollIsActive(bool isActive, Vector3? forceDirection = null, float forceAmount = 0f)
@@ -72,10 +76,12 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
             EnableOutline(false);
         }
 
-        public void MoveTo(Vector3 point)
+        public void MoveTo(Transform target)
         {
-            if (!_agent.enabled)
+            if (!_agent.enabled || IsMoving)
                 return;
+
+            var point = GetAttackPoint(target.position);
 
             _agent.isStopped = false;
             _agent.SetDestination(point);
@@ -93,6 +99,30 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
             _agent.ResetPath();
 
             SetWalking(false);
+        }
+
+        public Vector3 GetAttackPoint(Vector3 targetPosition)
+        {
+            if (!_agent.enabled)
+                return targetPosition;
+            
+            if (!NavMesh.Raycast(_transform.position, targetPosition, out NavMeshHit hit, NavMesh.AllAreas))
+            {
+                hit.position = targetPosition;
+            }
+
+            if (!NavMesh.CalculatePath(_transform.position, hit.position, NavMesh.AllAreas, _path))
+                return targetPosition;
+
+            if (_path.corners.Length == 0)
+                return targetPosition;
+
+            Vector3 lastCorner = _path.corners[_path.corners.Length - 1];
+
+            Vector2 offset2D = Random.insideUnitCircle * 0.5f;
+            Vector3 offset = new Vector3(offset2D.x, 0, offset2D.y);
+
+            return lastCorner + offset;
         }
     }
 }
