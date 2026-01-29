@@ -27,10 +27,10 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         public bool IsMoving => View.IsMoving;
         public float StopDistance => Model.AttackRange;
         public float AttackRange => Model.AttackRange;
-        public void MoveTo(Vector3 point) => View.MoveTo(CurrentAim.transform);
+        public void MoveTo(Vector3 point) => View.MoveTo(CurrentAim.GetOwnAttackPoint(transform.position));
         public void Stop() => View.Stop();
         public void SetAttacking(bool isAttacking) => View.SetAttacking(isAttacking);
-        public Vector3 GetAttackPoint() => View.GetAttackPoint(CurrentAim.transform.position);
+        public Vector3 AttackPoint() => CurrentAim.GetOwnAttackPoint(transform.position);
         
         public virtual void Attack()
         {
@@ -39,10 +39,17 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
 
         public override async UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f)
         {
-            Dispose(false, true);
-            View.RagdollIsActive(true, forceDirection, forceAmount);
-            await UniTask.Delay(2000);
-            Dispose();
+            if (IsVisible)
+            {
+                Dispose(false, true);
+                View.RagdollIsActive(true, forceDirection, forceAmount);
+                await UniTask.Delay(2000);
+                Dispose();
+            }
+            else
+            {
+                Dispose();
+            }
         }
 
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)

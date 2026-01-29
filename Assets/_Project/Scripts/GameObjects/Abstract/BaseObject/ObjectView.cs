@@ -7,6 +7,7 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
     {
         [SerializeField] protected Transform _transform;
         [SerializeField] protected Renderer _objRenderer;
+        [SerializeField] protected Collider _collider;
         [SerializeField] protected UniversalBar _healthBar;
         [SerializeField] protected Outline _outline;
 
@@ -21,10 +22,7 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
             _healthBar?.UpdateBar(currentHealth, maxHealth);
         }
 
-        public float GetHeightObject()
-        {
-            return _objRenderer.bounds.size.y;
-        }
+        public Vector3 GetAttackPoint(Vector3 fromPosition) => _collider.ClosestPoint(fromPosition);
         
         public void EnableOutline(bool enable)
         {

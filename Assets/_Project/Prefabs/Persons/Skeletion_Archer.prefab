@@ -152,9 +152,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7010333640787931880, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2223665777352500137, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1126745274102352746, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459422286769450282, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6263123026533074da3ea847edbd548a, type: 3}
       propertyPath: m_Name
       value: Skeletion_Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715537057149760858, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397189272015490291, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680576320354754780, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

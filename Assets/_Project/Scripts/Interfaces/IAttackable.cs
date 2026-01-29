@@ -7,6 +7,6 @@ namespace _Project.Scripts.Interfaces
         Vector3 Position { get; }
         float AttackRange { get; }
         void SetAttacking(bool isAttacking);
-        Vector3 GetAttackPoint();
+        Vector3 AttackPoint();
     }
 }

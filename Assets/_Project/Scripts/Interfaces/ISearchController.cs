@@ -9,6 +9,7 @@ namespace _Project.Scripts.Interfaces
         WarSide WarSide { get; }
         Vector3 Position { get; }
         float DetectionRadius { get; }
+        float AttackRange { get; }
         ObjectController CurrentAim { get; set; }
     }
 }

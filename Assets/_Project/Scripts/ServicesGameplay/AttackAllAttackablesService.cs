@@ -37,7 +37,7 @@ namespace _Project.Scripts.ServicesGameplay
                 return;
             }
 
-            Vector3 attackPoint = attackable.GetAttackPoint();
+            Vector3 attackPoint = attackable.AttackPoint();
             float sqrDist = (attackPoint - attackable.Position).sqrMagnitude;
             float attackRangeSqr = attackable.AttackRange * attackable.AttackRange;
 

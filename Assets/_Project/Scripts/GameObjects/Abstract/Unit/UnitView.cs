@@ -76,15 +76,13 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
             EnableOutline(false);
         }
 
-        public void MoveTo(Transform target)
+        public void MoveTo(Vector3 position)
         {
-            if (!_agent.enabled || IsMoving)
+            if (!_agent.enabled)
                 return;
 
-            var point = GetAttackPoint(target.position);
-
             _agent.isStopped = false;
-            _agent.SetDestination(point);
+            _agent.SetDestination(position);
 
             SetAttacking(false);
             SetWalking(true);
@@ -100,29 +98,9 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
 
             SetWalking(false);
         }
+    }
 
-        public Vector3 GetAttackPoint(Vector3 targetPosition)
-        {
-            if (!_agent.enabled)
-                return targetPosition;
-            
-            if (!NavMesh.Raycast(_transform.position, targetPosition, out NavMeshHit hit, NavMesh.AllAreas))
-            {
-                hit.position = targetPosition;
-            }
-
-            if (!NavMesh.CalculatePath(_transform.position, hit.position, NavMesh.AllAreas, _path))
-                return targetPosition;
-
-            if (_path.corners.Length == 0)
-                return targetPosition;
-
-            Vector3 lastCorner = _path.corners[_path.corners.Length - 1];
-
-            Vector2 offset2D = Random.insideUnitCircle * 0.5f;
-            Vector3 offset = new Vector3(offset2D.x, 0, offset2D.y);
-
-            return lastCorner + offset;
-        }
+    public class Hit
+    {
     }
 }

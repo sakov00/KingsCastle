@@ -62,6 +62,7 @@ namespace _Project.Scripts.ServicesGameplay
                 GlobalHealth = _health,
                 DetectionPositions = new NativeArray<float3>(count, Allocator.TempJob),
                 DetectionRadii = new NativeArray<float>(count, Allocator.TempJob),
+                AttackRange = new NativeArray<float>(count, Allocator.TempJob),
                 LocalWarSides = new NativeArray<WarSide>(count, Allocator.TempJob),
                 Results = results,
             };
@@ -69,6 +70,7 @@ namespace _Project.Scripts.ServicesGameplay
             for (int i = 0; i < count; i++)
             {
                 job.DetectionPositions[i] = allSearch[i].Position;
+                job.DetectionRadii[i] = allSearch[i].DetectionRadius;
                 job.DetectionRadii[i] = allSearch[i].DetectionRadius;
                 job.LocalWarSides[i] = allSearch[i].WarSide;
             }
@@ -96,6 +98,7 @@ namespace _Project.Scripts.ServicesGameplay
 
             [ReadOnly] public NativeArray<float3> DetectionPositions;
             [ReadOnly] public NativeArray<float> DetectionRadii;
+            [ReadOnly] public NativeArray<float> AttackRange;
             [ReadOnly] public NativeArray<WarSide> LocalWarSides;
 
             public NativeArray<int> Results;
@@ -104,7 +107,9 @@ namespace _Project.Scripts.ServicesGameplay
             {
                 float3 myPos = DetectionPositions[index];
                 float radius = DetectionRadii[index];
+                float attackRange = AttackRange[index];
                 float radiusSqr = radius * radius;
+                float attackRangeSqr = attackRange * attackRange; // Квадрат радиуса атаки для оптимизации
 
                 int nearest = -1;
                 float nearestDist = radius;
@@ -122,6 +127,9 @@ namespace _Project.Scripts.ServicesGameplay
 
                     float3 delta = GlobalPositions[i] - myPos;
                     float sqrDist = math.lengthsq(delta);
+
+                    if (sqrDist <= attackRangeSqr)
+                        continue;
 
                     if (sqrDist < radiusSqr)
                     {

@@ -35,6 +35,7 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         private ObjectView _view;
 
         public WarSide WarSide => Model.WarSide;
+        public bool IsVisible { get; set; }
 
         public ObjectModel Model
         {
@@ -86,6 +87,8 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
                 Killed(forceDirection, forceAmount).Forget();
             }
         }
+
+        public Vector3 GetOwnAttackPoint(Vector3 fromPosition) => View.GetAttackPoint(fromPosition);
 
         public abstract UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f);
         public abstract void Dispose(bool returnToPool = true, bool clearFromRegistry = true);
