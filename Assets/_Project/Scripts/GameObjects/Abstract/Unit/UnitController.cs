@@ -39,17 +39,17 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
 
         public override async UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f)
         {
-            // if (IsVisible)
-            // {
+            if (IsVisible)
+            {
                 Dispose(false, true);
                 View.RagdollIsActive(true, forceDirection, forceAmount);
                 await UniTask.Delay(2000);
                 Dispose();
-            // }
-            // else
-            // {
-            //     Dispose();
-            // }
+            }
+            else
+            {
+                Dispose();
+            }
         }
 
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)

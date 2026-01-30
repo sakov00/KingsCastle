@@ -114,7 +114,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6263123026533074da3ea847edbd548a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -2.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6263123026533074da3ea847edbd548a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -122,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6263123026533074da3ea847edbd548a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.29
+      value: -11.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6263123026533074da3ea847edbd548a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -203,6 +203,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6263123026533074da3ea847edbd548a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8273007852505043419}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6263123026533074da3ea847edbd548a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8074413704365078631}
     - targetCorrespondingSourceObject: {fileID: -6699540437372095836, guid: 6263123026533074da3ea847edbd548a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7730229847703210895}
@@ -562,6 +565,7 @@ MonoBehaviour:
       data:
         _transform: {fileID: 1221347007752762093}
         _objRenderer: {fileID: 9074545049591494106}
+        _collider: {fileID: 8074413704365078631}
         _healthBar: {fileID: 5084010126445508096}
         _outline: {fileID: 0}
         _animator: {fileID: 8685856320738613766}
@@ -625,6 +629,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &8074413704365078631
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997566394679863383}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2386075083741104683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5303925924890730707, guid: 6263123026533074da3ea847edbd548a, type: 3}

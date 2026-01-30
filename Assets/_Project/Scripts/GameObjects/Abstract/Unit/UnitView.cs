@@ -16,20 +16,18 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private List<Rigidbody> _allRigidbodies;
         
-        private NavMeshPath _path;
-        
         public bool IsMoving => _animator != null && _animator.GetBool(IsWalking);
         
         public override void Initialize()
         {
             base.Initialize();
             RagdollIsActive(false);
-            _path = new NavMeshPath();
         }
 
         public void RagdollIsActive(bool isActive, Vector3? forceDirection = null, float forceAmount = 0f)
         {
             if (_animator == null) return;
+            _agent.enabled = !isActive;
             _animator.enabled = !isActive;
             _allRigidbodies.ForEach(rigidbody =>
             {

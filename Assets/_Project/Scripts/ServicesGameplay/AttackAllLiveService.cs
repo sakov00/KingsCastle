@@ -6,7 +6,7 @@ using VContainer.Unity;
 
 namespace _Project.Scripts.ServicesGameplay
 {
-    public class AttackAllAttackablesService : ITickable
+    public class AttackAllLiveService : ITickable
     {
         [Inject] private LiveRegistry _liveRegistry;
 

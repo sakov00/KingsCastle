@@ -43,3 +43,36 @@
 20	1520	7913960867160753	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d5f7dceeec74f954
 12	1544	7913960867432393	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3d1ffed3096e4fc9
 1545	1611	7913960868126084	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libgame.so	86958a918ff732cd
+56	450	7914705683015456	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a47f79850f8bff1b
+450	553	7914705684070246	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libswappywrapper.so	2d0d3c9af233f8b4
+36	1374	7914705692274805	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	87ae6f5f591fecc5
+10	1376	7914705692325308	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	26507b20e1a30af7
+42	1398	7914705692517180	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a4d7e150d02c489
+32	1407	7914705692629030	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	61eb5e45b3cbb36c
+22	1409	7914705692639104	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7b9aa30ebf8a446a
+49	1480	7914705693352904	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8471c703f27a77fe
+29	1525	7914705693788079	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d5f7dceeec74f954
+1	1572	7914705694237183	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3d1ffed3096e4fc9
+1573	1636	7914705694893878	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libgame.so	86958a918ff732cd
+34	199	7914711925800390	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a47f79850f8bff1b
+200	291	7914711926683533	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libswappywrapper.so	2d0d3c9af233f8b4
+23	1184	7914711935586806	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	87ae6f5f591fecc5
+10	1198	7914711935701482	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	26507b20e1a30af7
+30	1228	7914711936035684	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a4d7e150d02c489
+20	1237	7914711936096870	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	61eb5e45b3cbb36c
+7	1238	7914711936132049	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7b9aa30ebf8a446a
+17	1330	7914711937035131	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d5f7dceeec74f954
+27	1335	7914711937112205	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8471c703f27a77fe
+13	1410	7914711937835862	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3d1ffed3096e4fc9
+1410	1475	7914711938498995	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libgame.so	86958a918ff732cd
+28	221	7914713501109257	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a47f79850f8bff1b
+221	313	7914713502009500	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libswappywrapper.so	2d0d3c9af233f8b4
+13	1171	7914713510547859	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	87ae6f5f591fecc5
+11	1206	7914713510941894	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	26507b20e1a30af7
+15	1218	7914713511047520	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	61eb5e45b3cbb36c
+8	1230	7914713511163372	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7b9aa30ebf8a446a
+21	1252	7914713511407536	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a4d7e150d02c489
+25	1306	7914713511951891	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8471c703f27a77fe
+18	1349	7914713512368999	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d5f7dceeec74f954
+5	1386	7914713512695700	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3d1ffed3096e4fc9
+1386	1454	7914713513390262	D:/Work/King's Castle/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/cxx/Debug/spe10184/obj/armeabi-v7a/libgame.so	86958a918ff732cd

@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 1103372522984482781}
   - component: {fileID: 8546018160241242986}
   - component: {fileID: 2140298328758670809}
-  - component: {fileID: 898024350948794148}
   - component: {fileID: 1764037662488493107}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &898024350948794148
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232302952673697347}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.28303498, y: 0.15908958, z: 0.82575375}
-  m_Center: {x: -0.008077607, y: -0.001142513, z: 0.115811095}
 --- !u!114 &1764037662488493107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,4 +103,4 @@ MonoBehaviour:
   <ProjectileType>k__BackingField: 1
   <Damage>k__BackingField: 0
   <PowerAttack>k__BackingField: 0
-  _rb: {fileID: 0}
+  <Speed>k__BackingField: 10

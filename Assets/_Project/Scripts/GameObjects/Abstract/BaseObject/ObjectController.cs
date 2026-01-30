@@ -1,6 +1,7 @@
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
+using _Project.Scripts.GameObjects.Additional.Projectiles;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         private ObjectView _view;
 
         public WarSide WarSide => Model.WarSide;
-        public bool IsVisible { get; set; }
+        public bool IsVisible => View.IsVisible;
 
         public ObjectModel Model
         {

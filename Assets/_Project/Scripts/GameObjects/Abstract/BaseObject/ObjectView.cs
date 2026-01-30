@@ -11,6 +11,8 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         [SerializeField] protected UniversalBar _healthBar;
         [SerializeField] protected Outline _outline;
 
+        public bool IsVisible => _objRenderer.isVisible;
+
         public virtual void Initialize()
         {
             _transform.SetParent(null);

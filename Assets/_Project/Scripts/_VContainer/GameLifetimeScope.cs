@@ -62,6 +62,7 @@ namespace _Project.Scripts._VContainer
         {
             builder.Register<LiveRegistry>(Lifetime.Singleton).AsSelf();
             builder.Register<SaveRegistry>(Lifetime.Singleton).AsSelf();
+            builder.Register<ProjectileRegistry>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterPools(IContainerBuilder builder)
@@ -98,7 +99,8 @@ namespace _Project.Scripts._VContainer
             
             builder.Register<DetectionService>(Lifetime.Singleton).AsSelf().As<ITickable>();
             builder.Register<MoveAllMovablesService>(Lifetime.Singleton).AsSelf().As<ITickable>();
-            builder.Register<AttackAllAttackablesService>(Lifetime.Singleton).AsSelf().As<ITickable>();
+            builder.Register<AttackAllLiveService>(Lifetime.Singleton).AsSelf().As<ITickable>();
+            builder.Register<ProjectileAttackService>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }
     }
 }

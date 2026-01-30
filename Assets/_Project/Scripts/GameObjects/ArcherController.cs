@@ -18,12 +18,16 @@ namespace _Project.Scripts.GameObjects
         
         public override void Attack()
         {
-            var projectile = _projectilePool.Get(View.ProjectileType, View.FirePoint.position, View.FirePoint.rotation);
+            if(CurrentAim == null)
+                return;
+
+            var firePointPosition = View.FirePoint.position;
+            var projectile = _projectilePool.Get(View.ProjectileType, firePointPosition, View.FirePoint.rotation);
             projectile.OwnerWarSide = Model.WarSide;
             projectile.Damage = Model.DamageAmount;
             projectile.PowerAttack = Model.PowerAttack;
             projectile.Speed = View.ProjectileSpeed;
-            projectile.LaunchToPoint(CurrentAim.transform.position, CurrentAim);
+            projectile.Direction = (CurrentAim.GetOwnAttackPoint(firePointPosition) - firePointPosition).normalized;
         }
     }
 }
