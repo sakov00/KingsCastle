@@ -97,10 +97,13 @@ namespace _Project.Scripts._VContainer
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             
-            builder.Register<DetectionService>(Lifetime.Singleton).AsSelf().As<ITickable>();
-            builder.Register<MoveAllMovablesService>(Lifetime.Singleton).AsSelf().As<ITickable>();
-            builder.Register<AttackAllLiveService>(Lifetime.Singleton).AsSelf().As<ITickable>();
-            builder.Register<ProjectileAttackService>(Lifetime.Singleton).AsSelf().As<ITickable>();
+            builder.Register<BlobShadowRotateService>(Lifetime.Singleton).AsSelf();
+            builder.Register<DetectionService>(Lifetime.Singleton).AsSelf();
+            builder.Register<MoveAllMovablesService>(Lifetime.Singleton).AsSelf();
+            builder.Register<AttackAllLiveService>(Lifetime.Singleton).AsSelf();
+            builder.Register<ProjectileAttackService>(Lifetime.Singleton).AsSelf();
+            
+            builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }
     }
 }

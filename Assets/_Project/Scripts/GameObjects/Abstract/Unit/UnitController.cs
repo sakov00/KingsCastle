@@ -16,7 +16,7 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         protected new TView View => (TView)base.View;
     }
     
-    public abstract class UnitController : ObjectController<UnitModel, UnitView>, ISearchController, IMovable, IAttackable
+    public abstract class UnitController : ObjectController<UnitModel, UnitView>, ISearchController, IMovable, IAttackable, IShadowed
     {
         [Inject] protected UnitPool UnitPool;
         [field:SerializeField] public ObjectController CurrentAim { get; set; }
@@ -31,11 +31,9 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         public void Stop() => View.Stop();
         public void SetAttacking(bool isAttacking) => View.SetAttacking(isAttacking);
         public Vector3 AttackPoint() => CurrentAim.GetOwnAttackPoint(transform.position);
-        
-        public virtual void Attack()
-        {
+        public Transform ShadowTransform => View.ShadowTransform;
 
-        }
+        public abstract void Attack();
 
         public override async UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f)
         {

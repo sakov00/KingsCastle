@@ -11,7 +11,12 @@ namespace _Project.Scripts.GameObjects
             Model.CurrentHealth = Model.MaxHealth;
             View.Initialize();
         }
-        
+
+        public override void Attack()
+        {
+            
+        }
+
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
         {
             base.Dispose(returnToPool, clearFromRegistry);

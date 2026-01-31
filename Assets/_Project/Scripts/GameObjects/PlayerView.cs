@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.GameObjects.Abstract.Unit;
 using _Project.Scripts.UI.Info;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace _Project.Scripts.GameObjects
 {
     [Serializable]
-    public class PlayerView : UnitView
+    public class PlayerView : ObjectView
     {
         [SerializeField] private UniversalBar _loadBar;
         [SerializeField] private UniversalBar _ultimateBar;
@@ -16,11 +17,11 @@ namespace _Project.Scripts.GameObjects
             base.Initialize();
         }
         
-        public override void SetWalking(bool isWalking)
+        public virtual void SetWalking(bool isWalking)
         {
         }
 
-        public override void SetAttacking(bool isAttacking)
+        public virtual void SetAttacking(bool isAttacking)
         {
 
         }

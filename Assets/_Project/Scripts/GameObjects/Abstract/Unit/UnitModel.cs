@@ -9,10 +9,9 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
 {
     [Serializable]
     [MemoryPackable]
-    [MemoryPackUnion(0, typeof(PlayerModel))]
-    [MemoryPackUnion(1, typeof(WarriorModel))]
-    [MemoryPackUnion(2, typeof(ArcherModel))]
-    [MemoryPackUnion(3, typeof(FlyingModel))]
+    [MemoryPackUnion(0, typeof(WarriorModel))]
+    [MemoryPackUnion(1, typeof(ArcherModel))]
+    [MemoryPackUnion(2, typeof(FlyingModel))]
     public abstract partial class UnitModel : ObjectModel
     {
         [field: Header("Unit Default Data")] 

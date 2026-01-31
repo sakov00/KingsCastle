@@ -6,6 +6,7 @@ using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -74,7 +75,7 @@ namespace _Project.Scripts.ServicesGameplay
                 job.DetectionRadii[i] = allSearch[i].DetectionRadius;
                 job.LocalWarSides[i] = allSearch[i].WarSide;
             }
-
+            
             JobHandle handle = job.Schedule(count, 64);
             handle.Complete();
 

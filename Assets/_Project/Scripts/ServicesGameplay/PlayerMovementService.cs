@@ -1,25 +1,29 @@
 using _Project.Scripts.GameObjects;
+using _Project.Scripts.Registries;
 using UnityEngine;
-using PlayerModel = _Project.Scripts.GameObjects.PlayerModel;
+using VContainer.Unity;
 
 namespace _Project.Scripts.ServicesGameplay
 {
-    public class PlayerMovementService
+    public class PlayerMovementService : ITickable
     {
-        private readonly PlayerModel _playerModel;
-        private readonly PlayerView _playerView;
-        private readonly Transform _transform;
-        private Vector3 _velocity;
+        private LiveRegistry _liveRegistry;
+        private PlayerController _playerController;
+        
+        // public PlayerMovementService(PlayerModel playerModel, PlayerView playerView, Transform transform)
+        // {
+        //     _playerModel = playerModel;
+        //     _playerView = playerView;
+        //     _transform = transform;
+        //
+        //     // playerView.Agent.updateRotation = false;
+        //     // playerView.Agent.acceleration = 100f;
+        //     // playerView.Agent.autoBraking = false;
+        // }
 
-        public PlayerMovementService(PlayerModel playerModel, PlayerView playerView, Transform transform)
+        public void Tick()
         {
-            _playerModel = playerModel;
-            _playerView = playerView;
-            _transform = transform;
-
-            // playerView.Agent.updateRotation = false;
-            // playerView.Agent.acceleration = 100f;
-            // playerView.Agent.autoBraking = false;
+            
         }
 
         public void MoveTo(Vector3 inputVector)

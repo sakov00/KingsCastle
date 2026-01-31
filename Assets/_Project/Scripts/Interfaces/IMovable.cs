@@ -9,6 +9,5 @@ namespace _Project.Scripts.Interfaces
         bool IsMoving { get; }
         void MoveTo(Vector3 point);
         void Stop();
-        
     }
 }

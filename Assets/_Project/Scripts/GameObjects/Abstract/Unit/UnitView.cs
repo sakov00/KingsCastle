@@ -14,8 +14,10 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
 
         [SerializeField] private Animator _animator;
         [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private Transform _shadowTransform;
         [SerializeField] private List<Rigidbody> _allRigidbodies;
         
+        public Transform ShadowTransform => _shadowTransform;
         public bool IsMoving => _animator != null && _animator.GetBool(IsWalking);
         
         public override void Initialize()
