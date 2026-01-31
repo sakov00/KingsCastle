@@ -40,6 +40,7 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
             if (IsVisible)
             {
                 Dispose(false, true);
+                ShadowTransform.gameObject.SetActive(false);
                 View.RagdollIsActive(true, forceDirection, forceAmount);
                 await UniTask.Delay(2000);
                 Dispose();
