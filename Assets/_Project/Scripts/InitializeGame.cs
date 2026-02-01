@@ -15,7 +15,7 @@ namespace _Project.Scripts
         
         public void Initialize()
         {
-            Application.targetFrameRate = 120;
+            Application.targetFrameRate = 240;
         }
         
         public async UniTask StartAsync(CancellationToken cancellation = default)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using Unity.Burst;
@@ -14,11 +15,13 @@ namespace _Project.Scripts.ServicesGameplay
     {
         [Inject] private LiveRegistry _liveRegistry;
 
+        private readonly List<IShadowed> _owners = new();
+        
         public void Tick()
         {
-            var owners  = _liveRegistry.GetAllByType<IShadowed>();
+            _liveRegistry.GetAllByType(_owners);
 
-            int count = owners.Count;
+            int count = _owners.Count;
             if (count == 0) return;
             
             var commands = new NativeArray<RaycastCommand>(count, Allocator.TempJob);
@@ -27,7 +30,7 @@ namespace _Project.Scripts.ServicesGameplay
 
             for (int i = 0; i < count; i++)
             {
-                var owner = owners[i];
+                var owner = _owners[i];
                 if (owner == null) continue;
 
                 var queryParams = new QueryParameters
@@ -58,7 +61,7 @@ namespace _Project.Scripts.ServicesGameplay
 
             for (int i = 0; i < count; i++)
             {
-                var shadow = owners[i].ShadowTransform;
+                var shadow = _owners[i].ShadowTransform;
                 var hit = hits[i];
 
                 if (shadow == null) continue;

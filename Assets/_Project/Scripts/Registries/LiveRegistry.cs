@@ -24,9 +24,15 @@ namespace _Project.Scripts.Registries
 
         public ReactiveCollection<ObjectController> GetAllReactive() => _liveObjects;
         
-        public List<T> GetAllByType<T>()
+        public void GetAllByType<T>(List<T> result)
         {
-            return _liveObjects.OfType<T>().ToList();
+            result.Clear();
+
+            for (int i = 0; i < _liveObjects.Count; i++)
+            {
+                if (_liveObjects[i] is T t)
+                    result.Add(t);
+            }
         }
 
         public void Clear()

@@ -92,9 +92,9 @@ namespace _Project.Scripts
         
         private void TryInvokeAllEnemiesKilled(ObjectController objectController)
         {
-            if (objectController.WarSide == WarSide.Enemy &&
-                _liveRegistry.GetAllByType<UnitController>().All(x => x.WarSide != WarSide.Enemy))
-                WinEvent?.Invoke();
+            // if (objectController.WarSide == WarSide.Enemy &&
+            //     _liveRegistry.GetAllByType<UnitController>().All(x => x.WarSide != WarSide.Enemy))
+            //     WinEvent?.Invoke();
         }
         
         private void TryInvokeMainBuildDestroyed(ObjectController objectController)

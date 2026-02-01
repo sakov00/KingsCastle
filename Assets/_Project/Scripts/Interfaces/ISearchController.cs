@@ -11,5 +11,6 @@ namespace _Project.Scripts.Interfaces
         float DetectionRadius { get; }
         float AttackRange { get; }
         ObjectController CurrentAim { get; set; }
+        ObjectController DefaultAim { get; set; }
     }
 }

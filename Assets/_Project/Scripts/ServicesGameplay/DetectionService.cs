@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Burst;
@@ -16,6 +17,8 @@ namespace _Project.Scripts.ServicesGameplay
     {
         [Inject] private AppData _appData;
         [Inject] private LiveRegistry _liveRegistry;
+        
+        private readonly List<ISearchController> _allSearch = new();
 
         private NativeArray<float3> _positions;
         private NativeArray<WarSide> _warSides;
@@ -51,8 +54,8 @@ namespace _Project.Scripts.ServicesGameplay
 
         public void DetectAll()
         {
-            var allSearch = _liveRegistry.GetAllByType<ISearchController>();
-            int count = allSearch.Count;
+            _liveRegistry.GetAllByType(_allSearch);
+            int count = _allSearch.Count;
 
             var results = new NativeArray<int>(count, Allocator.TempJob);
 
@@ -70,10 +73,10 @@ namespace _Project.Scripts.ServicesGameplay
 
             for (int i = 0; i < count; i++)
             {
-                job.DetectionPositions[i] = allSearch[i].Position;
-                job.DetectionRadii[i] = allSearch[i].DetectionRadius;
-                job.DetectionRadii[i] = allSearch[i].DetectionRadius;
-                job.LocalWarSides[i] = allSearch[i].WarSide;
+                job.DetectionPositions[i] = _allSearch[i].Position;
+                job.DetectionRadii[i] = _allSearch[i].DetectionRadius;
+                job.DetectionRadii[i] = _allSearch[i].DetectionRadius;
+                job.LocalWarSides[i] = _allSearch[i].WarSide;
             }
             
             JobHandle handle = job.Schedule(count, 64);
@@ -82,7 +85,7 @@ namespace _Project.Scripts.ServicesGameplay
             for (int i = 0; i < count; i++)
             {
                 int nearestIndex = results[i];
-                allSearch[i].CurrentAim = nearestIndex >= 0 ? _liveRegistry.GetAllReactive()[nearestIndex] : null;
+                _allSearch[i].CurrentAim = nearestIndex >= 0 ? _liveRegistry.GetAllReactive()[nearestIndex] : _allSearch[i].DefaultAim;
             }
 
             job.DetectionPositions.Dispose();

@@ -20,14 +20,14 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
     {
         [Inject] protected UnitPool UnitPool;
         [field:SerializeField] public ObjectController CurrentAim { get; set; }
+        [field:SerializeField] public ObjectController DefaultAim { get; set; }
 
         public UnitType UnitType => Model.UnitType;
         public Vector3 Position => transform.position;
         public float DetectionRadius => Model.DetectionRadius;
         public bool IsMoving => View.IsMoving;
-        public float StopDistance => Model.AttackRange;
         public float AttackRange => Model.AttackRange;
-        public void MoveTo(Vector3 point) => View.MoveTo(CurrentAim.GetOwnAttackPoint(transform.position));
+        public void MoveTo(Vector3 point) => View.MoveTo(point);
         public void Stop() => View.Stop();
         public void SetAttacking(bool isAttacking) => View.SetAttacking(isAttacking);
         public Vector3 AttackPoint() => CurrentAim.GetOwnAttackPoint(transform.position);

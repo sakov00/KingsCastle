@@ -56,7 +56,8 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
             if (_animator == null) return;
             if (_animator.GetBool(IsAttack) == isAttacking)
                 return;
-            
+
+            SetWalking(false);
             _animator.SetBool(IsAttack, isAttacking);
         }
         
@@ -80,11 +81,16 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         {
             if (!_agent.enabled)
                 return;
+            
+            if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
+            {
+                Stop();
+                RotateTowards(position);
+            }
 
             _agent.isStopped = false;
             _agent.SetDestination(position);
 
-            SetAttacking(false);
             SetWalking(true);
         }
         
@@ -98,9 +104,21 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
 
             SetWalking(false);
         }
-    }
+        
+        private void RotateTowards(Vector3 targetPos)
+        {
+            Vector3 direction = (targetPos - _transform.position).normalized;
+            direction.y = 0;
 
-    public class Hit
-    {
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                _transform.rotation = Quaternion.Slerp(
+                    _transform.rotation,
+                    lookRotation,
+                    Time.deltaTime * 10f // скорость поворота
+                );
+            }
+        }
     }
 }

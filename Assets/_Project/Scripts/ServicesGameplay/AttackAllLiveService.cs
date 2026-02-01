@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using UnityEngine;
@@ -9,15 +10,16 @@ namespace _Project.Scripts.ServicesGameplay
     public class AttackAllLiveService : ITickable
     {
         [Inject] private LiveRegistry _liveRegistry;
+        
+        private readonly List<IAttackable> _attackables = new();
 
         public void Tick()
         {
-            var attackables = _liveRegistry.GetAllByType<IAttackable>();
-            int count = attackables.Count;
+            _liveRegistry.GetAllByType(_attackables);
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < _attackables.Count; i++)
             {
-                HandleAttack(attackables[i]);
+                HandleAttack(_attackables[i]);
             }
         }
 

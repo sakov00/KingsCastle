@@ -31,8 +31,7 @@ namespace _Project.Scripts.GameObjects.Abstract.Unit
         [MemoryPackInclude][field: SerializeField] public float DamageAmountBonus { get; set; } = 1;
         
         [field: Header("Secondary Data")]
-        [MemoryPackInclude][field: SerializeField] public int CurrentWaypointIndex { get; set; }
-        [MemoryPackInclude][field: SerializeField] public List<Vector3> WayToAim { get; set; }
+        [MemoryPackInclude][field: SerializeField] public Vector3 DefaultAim { get; set; }
         
         public virtual float MoveSpeed => _moveSpeedDefault * MoveSpeedBonus;
         public virtual float RotationSpeed => _rotationSpeedDefault * RotationSpeedBonus;
