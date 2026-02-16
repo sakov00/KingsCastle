@@ -23,7 +23,7 @@ namespace _Project.Scripts.Factories
             var newUnit = prefab != null ? _resolver.Instantiate(prefab, position, rotation) : null;
             if (newUnit?.UnitType == UnitType.Player)
             {
-                GlobalObjects.CameraController.Initialize(newUnit.transform);
+                // GlobalObjects.CameraController.Initialize(newUnit.transform);
             }
 
             return newUnit;

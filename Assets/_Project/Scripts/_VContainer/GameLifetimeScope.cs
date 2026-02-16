@@ -100,6 +100,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<BlobShadowRotateService>(Lifetime.Singleton).AsSelf();
             builder.Register<DetectionService>(Lifetime.Singleton).AsSelf();
             builder.Register<MoveAllMovablesService>(Lifetime.Singleton).AsSelf();
+            builder.Register<PlayerMovementService>(Lifetime.Singleton).AsSelf();
             builder.Register<AttackAllLiveService>(Lifetime.Singleton).AsSelf();
             builder.Register<ProjectileAttackService>(Lifetime.Singleton).AsSelf();
             
