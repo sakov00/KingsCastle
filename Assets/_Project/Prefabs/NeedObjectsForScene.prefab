@@ -343,7 +343,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1701119661698839565}
   m_Father: {fileID: 7937882727632113504}
   m_LocalEulerAnglesHint: {x: 74, y: 381.1, z: 0}
 --- !u!108 &8094907741484806761
@@ -366,10 +367,10 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.75
+    m_Strength: 0.5
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.1
+    m_NearPlane: 1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -463,7 +464,7 @@ Transform:
   m_GameObject: {fileID: 3456779618153162678}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0037088024, y: -0.8660016, z: 0.49998623, w: -0.0064238347}
-  m_LocalPosition: {x: -19.2, y: 35, z: -3.78}
+  m_LocalPosition: {x: -7.11, y: 44.5, z: 23.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -584,8 +585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e13ed7f92754800adb7dacc92162ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentCamera>k__BackingField: {fileID: 908287483260095829}
-  _offset: {x: 0, y: 20, z: -12}
+  CurrentCamera: {fileID: 908287483260095829}
+  Target: {fileID: 0}
+  _offset: {x: 0, y: 20, z: 12}
   _followSpeed: 5
   _returnSpeed: 30
   _limitSecondsReturn: 1
@@ -1213,6 +1215,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8271644513153575863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701119661698839565}
+  m_Layer: 0
+  m_Name: Projector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1701119661698839565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8271644513153575863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 555348071477304226}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8915949967228478309
 GameObject:
   m_ObjectHideFlags: 0
