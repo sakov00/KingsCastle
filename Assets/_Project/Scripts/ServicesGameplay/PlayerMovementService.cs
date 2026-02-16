@@ -30,10 +30,10 @@ namespace _Project.Scripts.ServicesGameplay
         {
             Vector3 input = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.W)) input += Vector3.back * 0.1f;
-            if (Input.GetKey(KeyCode.S)) input += Vector3.forward * 0.1f;
-            if (Input.GetKey(KeyCode.A)) input += Vector3.right * 0.1f;
-            if (Input.GetKey(KeyCode.D)) input += Vector3.left * 0.1f;
+            if (Input.GetKey(KeyCode.W)) input += Vector3.forward * 0.1f;
+            if (Input.GetKey(KeyCode.S)) input += Vector3.back * 0.1f;
+            if (Input.GetKey(KeyCode.A)) input += Vector3.left * 0.1f;
+            if (Input.GetKey(KeyCode.D)) input += Vector3.right * 0.1f;
 
             if (input == Vector3.zero)
             {
