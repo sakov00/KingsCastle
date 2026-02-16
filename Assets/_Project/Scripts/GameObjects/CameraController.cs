@@ -1,41 +1,52 @@
+using System.Collections.Generic;
+using _Project.Scripts._VContainer;
+using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using VContainer;
 
 namespace _Project.Scripts.GameObjects
 {
     [RequireComponent(typeof(Camera))]
     public class CameraController : MonoBehaviour
     {
-        [field:SerializeField] public Camera CurrentCamera { get; set; }
-
+        [Inject] private LiveRegistry _liveRegistry;
+        
         private void OnValidate()
         {
             CurrentCamera ??= new Camera();
         }
-        
+
+        [SerializeField] public Camera CurrentCamera;
+        [SerializeField] private Transform Target;
         [SerializeField] private Vector3 _offset = new(0f, 20f, -12f);
         [SerializeField] private float _followSpeed = 5f;
         [SerializeField] private float _returnSpeed = 30f;
         [SerializeField] private float _limitSecondsReturn = 1f;
         
-        private Transform _target;
         private Tween _moveTween;
         private bool _isFollow;
 
-        public void Initialize(Transform targetParam)
+        public void Start()
         {
-            _target = targetParam;
-            CurrentCamera.transform.position = _target.position + _offset;
-            CurrentCamera.transform.LookAt(_target);
+            InjectManager.Inject(this);
+            if (Target == null)
+            {
+                var players = new List<PlayerController>();
+                _liveRegistry.GetAllByType(players);
+                Target = players[0].transform;
+            }
+            CurrentCamera.transform.position = Target.position + _offset;
+            CurrentCamera.transform.LookAt(Target);
             _isFollow = true;
         }
 
         public async UniTask EnableFollowAnimation()
         {
             _moveTween?.Kill();
-            if (_target == null) return; 
-            var desiredPosition = _target.position + _offset;
+            if (Target == null) return; 
+            var desiredPosition = Target.position + _offset;
 
             var distance = Vector3.Distance(CurrentCamera.transform.position, desiredPosition);
             if (distance < 0.01f) return;
@@ -56,12 +67,12 @@ namespace _Project.Scripts.GameObjects
 
         private void LateUpdate()
         {
-            if (_target == null) return; 
+            if (Target == null) return; 
             if (!_isFollow) return; 
             
-            Vector3 desiredPosition = _target.position + _offset;
+            Vector3 desiredPosition = Target.position + _offset;
             CurrentCamera.transform.position = Vector3.Lerp(CurrentCamera.transform.position, desiredPosition, _followSpeed * Time.deltaTime);
-            CurrentCamera.transform.LookAt(_target);
+            CurrentCamera.transform.LookAt(Target);
         }
     }
 }

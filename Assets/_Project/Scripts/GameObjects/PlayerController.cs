@@ -1,7 +1,9 @@
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
+using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.GameObjects.Abstract.Unit;
+using _Project.Scripts.Interfaces;
 using _Project.Scripts.ServicesGameplay;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -9,20 +11,29 @@ using VContainer;
 
 namespace _Project.Scripts.GameObjects
 {
-    public class PlayerController : ObjectController<PlayerModel, PlayerView>
+    public class PlayerController : ObjectController<PlayerModel, PlayerView>, ISearchController, IMovable, IAttackable, IShadowed
     {
         [Inject] private AppData _appData;
         [Inject] private GameTimer _gameTimer;
         
-        private PlayerMovementService _playerMovementService;
-        private RegenerationHpService _regenerationHpService;
+        [field:SerializeField] public ObjectController CurrentAim { get; set; }
+        [field:SerializeField] public ObjectController DefaultAim { get; set; }
+
+        public UnitType UnitType => UnitType.Player;
+        public Vector3 Position => transform.position;
+        public float DetectionRadius => Model.DetectionRadius;
+        public bool IsMoving => View.IsMoving;
+        public float AttackRange => Model.AttackRange;
+        public void MoveTo(Vector3 point) => View.MoveTo(point);
+        public void Stop() => View.Stop();
+        public void SetAttacking(bool isAttacking) => View.SetAttacking(isAttacking);
+        public Vector3 AttackPoint() => CurrentAim.GetOwnAttackPoint(transform.position);
+        public Transform ShadowTransform => View.ShadowTransform;
 
         public override void Initialize()
         {
             base.Initialize();
-            
             View.Initialize();
-            View.UpdateLoadBar(Model.CurrentTimeResurrection, Model.DurationTimeResurrection);
             
             if (Model.IsActiveUltimate)
                 _gameTimer.Subscribe(1f, DisableUltimate);
@@ -34,24 +45,14 @@ namespace _Project.Scripts.GameObjects
 
             if(Model.IsNoDamageable)
                 _gameTimer.Subscribe(1f, DisableNoDamage);
-            
-            _regenerationHpService = new RegenerationHpService(Model, View);
-
         }
-
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-            View.UpdateUltimateBar(Model.CurrentValueUltimate, Model.MaxValueUltimate);
-        }
+        
 
         private void Update()
         {
-            _playerMovementService?.MoveTo(_appData.LevelData.MoveDirection);
+            // _playerMovementService?.MoveTo(_appData.LevelData.MoveDirection);
         }
         
-        
-
         public void AddUltimateValue()
         {
             Model.CurrentValueUltimate += Model.ShootAddUltimate;
@@ -88,7 +89,6 @@ namespace _Project.Scripts.GameObjects
         private void TryReturnToGame()
         {
             Model.CurrentTimeResurrection++;
-            View.UpdateLoadBar(Model.CurrentTimeResurrection, Model.DurationTimeResurrection);
             if (Model.CurrentTimeResurrection == Model.DurationTimeResurrection)
             {
                 Model.CurrentTimeResurrection = 0;
@@ -128,8 +128,6 @@ namespace _Project.Scripts.GameObjects
             _gameTimer.Unsubscribe(DisableUltimate);
             _gameTimer.Unsubscribe(DisableNoDamage);
             _gameTimer.Unsubscribe(TryReturnToGame);
-            _playerMovementService = null;
-            _regenerationHpService?.Dispose();
         }
     }
 }

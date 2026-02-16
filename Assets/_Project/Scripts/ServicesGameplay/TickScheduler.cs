@@ -11,6 +11,7 @@ public class TickScheduler : ITickable
         BlobShadowRotateService blob,
         DetectionService detection,
         MoveAllMovablesService move,
+        PlayerMovementService playerMove,
         AttackAllLiveService attack,
         ProjectileAttackService projectile)
     {
@@ -19,6 +20,7 @@ public class TickScheduler : ITickable
             blob,
             detection,
             move,
+            playerMove,
             attack,
             projectile
         };

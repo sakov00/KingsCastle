@@ -1,56 +1,51 @@
+using System.Collections.Generic;
 using _Project.Scripts.GameObjects;
+using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace _Project.Scripts.ServicesGameplay
 {
     public class PlayerMovementService : ITickable
     {
-        private LiveRegistry _liveRegistry;
-        private PlayerController _playerController;
-        
-        // public PlayerMovementService(PlayerModel playerModel, PlayerView playerView, Transform transform)
-        // {
-        //     _playerModel = playerModel;
-        //     _playerView = playerView;
-        //     _transform = transform;
-        //
-        //     // playerView.Agent.updateRotation = false;
-        //     // playerView.Agent.acceleration = 100f;
-        //     // playerView.Agent.autoBraking = false;
-        // }
+        [Inject] private LiveRegistry _liveRegistry;
+
+        private PlayerController _player;
 
         public void Tick()
         {
-            
+            if (_player == null)
+            {
+                var players = new List<PlayerController>();
+                _liveRegistry.GetAllByType(players);
+                _player = players[0];
+            }
+
+            HandleKeyboardInput(_player);
         }
 
-        public void MoveTo(Vector3 inputVector)
+        private void HandleKeyboardInput(IMovable movable)
         {
-            // if (!_playerView.Agent.isOnNavMesh) return;
-            //
-            // if (inputVector.sqrMagnitude < 0.01f)
-            // {
-            //     _playerView.Agent.isStopped = true;
-            //     return;
-            // }
-            //
-            // var direction = Vector3.ClampMagnitude(inputVector, 1f);
-            // var destination = _transform.position + direction * 2f;
-            //
-            // _playerView.Agent.isStopped = false;
-            // _playerView.Agent.speed = _playerModel.MoveSpeed;
-            // _playerView.Agent.SetDestination(destination);
-            //
-            // if (_playerView.Agent.velocity.sqrMagnitude > 0.1f)
-            // {
-            //     var targetRotation = Quaternion.LookRotation(_playerView.Agent.velocity.normalized);
-            //     _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation,
-            //         _playerModel.RotationSpeed * Time.deltaTime * 3f);
-            // }
+            Vector3 input = Vector3.zero;
+
+            if (Input.GetKey(KeyCode.W)) input += Vector3.back * 0.1f;
+            if (Input.GetKey(KeyCode.S)) input += Vector3.forward * 0.1f;
+            if (Input.GetKey(KeyCode.A)) input += Vector3.right * 0.1f;
+            if (Input.GetKey(KeyCode.D)) input += Vector3.left * 0.1f;
+
+            if (input == Vector3.zero)
+            {
+                if (movable.IsMoving)
+                    movable.Stop();
+                return;
+            }
+
+            input.Normalize();
+
+            var targetPosition = movable.Position + input;
+            movable.MoveTo(targetPosition);
         }
-        
-        
     }
 }
