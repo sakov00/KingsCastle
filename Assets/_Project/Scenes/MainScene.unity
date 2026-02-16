@@ -2448,6 +2448,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7537423071880495547, guid: 47f7081215405884cb69170d19cf5837, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7608561609897601077, guid: 47f7081215405884cb69170d19cf5837, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -2506,6 +2510,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8094907741484806761, guid: 47f7081215405884cb69170d19cf5837, type: 3}
       propertyPath: m_Shadows.m_NearPlane
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246297018893491333, guid: 47f7081215405884cb69170d19cf5837, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8246297018893491333, guid: 47f7081215405884cb69170d19cf5837, type: 3}
