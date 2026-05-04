@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
-using Interfaces;
 using UnityEngine;
 
 namespace UI.TweenControllers
