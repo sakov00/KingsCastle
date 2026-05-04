@@ -1,8 +1,10 @@
+using System;
+using System.Collections.Generic;
 using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenControllers
+namespace TweenControllers
 {
     public class TweenIfActive : TweenAction
     {
@@ -13,9 +15,9 @@ namespace _Project.Scripts.UI.TweenFeature.TweenControllers
         public override Tween GetTween()
         {
             if(_ifActiveObject.activeInHierarchy)
-                return _activeTween?.GetTween();
+                return _activeTween.GetTween();
             else
-                return _notActiveObject?.GetTween();
+                return _notActiveObject.GetTween();
         }
 
         public override void Dispose()
@@ -24,11 +26,6 @@ namespace _Project.Scripts.UI.TweenFeature.TweenControllers
                 _activeTween.Dispose();
             else
                 _notActiveObject.Dispose();
-        }
-
-        public void Play()
-        {
-            GetTween()?.Play();
         }
     }
 }

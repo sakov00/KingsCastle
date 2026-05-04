@@ -37,8 +37,8 @@ namespace _Project.Scripts.GameObjects
                 _liveRegistry.GetAllByType(players);
                 Target = players[0].transform;
             }
-            CurrentCamera.transform.position = Target.position + _offset;
-            CurrentCamera.transform.LookAt(Target);
+            transform.position = Target.position + _offset;
+            transform.LookAt(Target);
             _isFollow = true;
         }
 
@@ -71,8 +71,8 @@ namespace _Project.Scripts.GameObjects
             if (!_isFollow) return; 
             
             Vector3 desiredPosition = Target.position + _offset;
-            CurrentCamera.transform.position = Vector3.Lerp(CurrentCamera.transform.position, desiredPosition, _followSpeed * Time.deltaTime);
-            CurrentCamera.transform.LookAt(Target);
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, _followSpeed * Time.deltaTime);
+            transform.LookAt(Target);
         }
     }
 }

@@ -1,8 +1,9 @@
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace UI.TweenActions
 {
     public class ColorTween : TweenAction
     {

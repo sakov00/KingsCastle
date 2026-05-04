@@ -1,7 +1,8 @@
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace UI.TweenActions
 {
     public class MoveToPointTween : TweenAction
     {

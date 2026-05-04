@@ -22,13 +22,7 @@ namespace _Project.Scripts.UI.WindowElements
         private bool _justEnabled;
 
         private ISelectable _selected;
-        private Camera _camera;
-
-        private void Awake()
-        {
-            _camera = GlobalObjects.CameraController.CurrentCamera;
-        }
-
+        
         private void OnEnable()
         {
             _justEnabled = true;
@@ -145,16 +139,16 @@ namespace _Project.Scripts.UI.WindowElements
 
         private void DragCamera(Vector2 delta)
         {
-            Vector3 right = _camera.transform.right;
+            Vector3 right = GlobalObjects.Camera.transform.right;
             Vector3 forward = Vector3.Cross(right, Vector3.up);
 
             Vector3 move = (-right * delta.x - forward * delta.y) * _dragSpeed * Time.deltaTime;
-            GlobalObjects.CameraController.transform.position += move;
+            GlobalObjects.Camera.transform.position += move;
         }
 
         private bool TrySelectUnit(Vector2 screenPos)
         {
-            var ray = _camera.ScreenPointToRay(screenPos);
+            var ray = GlobalObjects.Camera.ScreenPointToRay(screenPos);
             if (!Physics.Raycast(ray, out RaycastHit hit, 1000f)) return false;
 
             if (hit.collider.TryGetComponent<ISelectable>(out var unit))
@@ -172,7 +166,7 @@ namespace _Project.Scripts.UI.WindowElements
 
         public bool TryGetGroundPoint(Vector2 screenPos, out Vector3 point)
         {
-            var ray = _camera.ScreenPointToRay(screenPos);
+            var ray = GlobalObjects.Camera.ScreenPointToRay(screenPos);
             float maxDistance = 1000f;
 
             var hits = Physics.RaycastAll(ray, maxDistance);
@@ -204,7 +198,7 @@ namespace _Project.Scripts.UI.WindowElements
 
         private void TryHandleBuy(Vector2 screenPos)
         {
-            var ray = _camera.ScreenPointToRay(screenPos);
+            var ray = GlobalObjects.Camera.ScreenPointToRay(screenPos);
             if (!Physics.Raycast(ray, out RaycastHit hit, 1000f)) return;
 
             if (hit.collider.TryGetComponent<IBuy>(out var buyable))

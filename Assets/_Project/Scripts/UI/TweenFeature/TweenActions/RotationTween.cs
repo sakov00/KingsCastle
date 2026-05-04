@@ -1,28 +1,56 @@
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace UI.TweenActions
 {
     public class RotationTween : TweenAction
     {
         [SerializeField] private Transform _target;
 
-        [SerializeField] private Vector3 _rotationDelta = Vector3.zero;
+        [Header("Portrait")]
+        [SerializeField] private Vector3 _rotationDeltaPortrait = Vector3.zero;
+        [SerializeField] private Vector3 _minRotationPortrait = Vector3.zero;
+        [SerializeField] private Vector3 _maxRotationPortrait = Vector3.zero;
+
+        [Header("Landscape")]
+        [SerializeField] private Vector3 _rotationDeltaLandscape = Vector3.zero;
+        [SerializeField] private Vector3 _minRotationLandscape = Vector3.zero;
+        [SerializeField] private Vector3 _maxRotationLandscape = Vector3.zero;
 
         [Header("Tween Settings")]
         [SerializeField] private float _duration = 0.5f;
         [SerializeField] private float _delay = 0f;
         [SerializeField] private Ease _ease = Ease.Linear;
         [SerializeField] private bool _playOnAwake;
-        [SerializeField] private bool _loop;
-        [SerializeField] private RotateMode _rotateMode = RotateMode.Fast;
+        [SerializeField] private bool _checkState;
 
-        private Tween _tween;
+        private int _width;
+        private int _height;
+
+        private void OnValidate()
+        {
+            if (_target == null)
+                Debug.LogWarning($"{nameof(RotationTween)}: Target не найден на {gameObject.name}");
+        }
 
         private void Awake()
         {
+            _width = Screen.width;
+            _height = Screen.height;
+
             if (_playOnAwake)
-                GetTween()?.Play();
+                GetTween().Play();
+        }
+
+        private void Update()
+        {
+            if (_checkState && (_width != Screen.width || _height != Screen.height))
+            {
+                _width = Screen.width;
+                _height = Screen.height;
+                GetTween().Play();
+            }
         }
 
         public override Tween GetTween()
@@ -30,23 +58,26 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
             if (_target == null)
             {
                 Debug.LogWarning($"{nameof(RotationTween)}: Target не найден на {gameObject.name}");
-                return null;
+                return DOTween.Sequence();
             }
-            
-            Vector3 newRotation = _target.localEulerAngles + _rotationDelta;
-            _tween = _target
-                .DOLocalRotate(newRotation, _duration, _rotateMode);
 
-            if (_loop)
-                _tween.SetLoops(-1, LoopType.Restart);
+            bool isPortrait = Screen.height >= Screen.width;
 
-            return _tween;
-        }
+            Vector3 delta = isPortrait ? _rotationDeltaPortrait : _rotationDeltaLandscape;
+            Vector3 min = isPortrait ? _minRotationPortrait : _minRotationLandscape;
+            Vector3 max = isPortrait ? _maxRotationPortrait : _maxRotationLandscape;
 
-        public void Play()
-        {
-            if(_tween == null || !_tween.active)
-                GetTween()?.Play();
+            // Рассчитываем новый масштаб с учётом текущего
+            Vector3 newRotation = _target.localRotation.eulerAngles + delta;
+
+            newRotation.x = Mathf.Clamp(newRotation.x, min.x, max.x);
+            newRotation.y = Mathf.Clamp(newRotation.y, min.y, max.y);
+            newRotation.z = Mathf.Clamp(newRotation.z, min.z, max.z);
+
+            return _target
+                .DORotate(newRotation, _duration)
+                .SetEase(_ease)
+                .SetDelay(_delay);
         }
     }
 }

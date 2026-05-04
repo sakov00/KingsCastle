@@ -48,12 +48,12 @@ namespace _Project.Scripts.UI.Windows
                     {
                         _touchAndMouseDragInput.gameObject.SetActive(true);
                         _joystick.gameObject.SetActive(false);
-                        GlobalObjects.CameraController.DisableFollowAnimation();
+                        // GlobalObjects.Camera.DisableFollowAnimation();
                     }
                     else
                     {
                         _touchAndMouseDragInput.gameObject.SetActive(false);
-                        await GlobalObjects.CameraController.EnableFollowAnimation();
+                        // await GlobalObjects.Camera.EnableFollowAnimation();
                         _joystick.gameObject.SetActive(true);
                     }
                 })

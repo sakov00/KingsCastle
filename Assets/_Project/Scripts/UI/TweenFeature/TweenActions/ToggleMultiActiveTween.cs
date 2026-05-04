@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace TweenActions
 {
     public class ToggleMultiActiveTween : TweenAction
     {

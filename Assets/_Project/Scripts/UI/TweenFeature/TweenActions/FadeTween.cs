@@ -1,8 +1,9 @@
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace UI.TweenActions
 {
     public class FadeTween : TweenAction
     {
@@ -17,14 +18,6 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
         [SerializeField] private float _delay = 0f;
         [SerializeField] private Ease _ease = Ease.Linear;
         [SerializeField] private bool _controlRaycast = true;
-
-        [Header("Fade Percent (0–100)")]
-        [Range(0, 100)] [SerializeField] private float _fadeInPercent = 100f;
-        [Range(0, 100)] [SerializeField] private float _fadeOutPercent = 0f;
-
-        [Header("Loop")]
-        [SerializeField] private LoopType _loopType = LoopType.Restart;
-        [SerializeField] private int _loopsCount = 0;
 
         private void OnValidate()
         {
@@ -42,7 +35,7 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
                 return DOTween.Sequence();
             }
 
-            float start;
+            float start, end;
             if (_useCurrentAsStart)
             {
                 start = _canvasGroup != null ? _canvasGroup.alpha : _image.color.a;
@@ -50,27 +43,21 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
             else
             {
                 start = _fadeIn ? 0f : 1f;
-                SetAlpha(start);
+                if (_canvasGroup != null)
+                    _canvasGroup.alpha = start;
+                else
+                    SetImageAlpha(start);
             }
 
-            float end = _fadeIn
-                ? _fadeInPercent / 100f
-                : _fadeOutPercent / 100f;
+            end = _fadeIn ? 1f : 0f;
 
-            Tween tween = null;
-            if(_canvasGroup != null)
+            Tween tween;
+            if (_canvasGroup != null)
                 tween = _canvasGroup.DOFade(end, _duration);
             else
-                tween =  _image.DOFade(end, _duration);
+                tween = _image.DOFade(end, _duration);
 
-            tween
-                .SetEase(_ease)
-                .SetDelay(_delay);
-
-            if (_loopsCount != 0)
-            {
-                tween.SetLoops(_loopsCount, _loopType);
-            }
+            tween.SetEase(_ease).SetDelay(_delay);
 
             if (_controlRaycast)
             {
@@ -90,14 +77,8 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
             return tween;
         }
 
-        private void SetAlpha(float value)
+        private void SetImageAlpha(float value)
         {
-            if (_canvasGroup != null)
-            {
-                _canvasGroup.alpha = value;
-                return;
-            }
-
             if (_image == null) return;
             var color = _image.color;
             color.a = value;

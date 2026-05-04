@@ -1,7 +1,8 @@
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace TweenActions
 {
     public enum MoveLogic
     {
@@ -137,8 +138,9 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
 
                 case MoveLogic.PingPong:
                 {
-                    Vector2 endPos = ApplyAxis(currentPos, _offset);
-                    return _target.DOAnchorPos(endPos, _duration)
+                    Vector2 startPos = ApplyAxis(currentPos, _offset);
+                    _target.anchoredPosition = startPos;
+                    return _target.DOAnchorPos(currentPos, _duration)
                         .SetEase(_ease)
                         .SetLoops(2, LoopType.Yoyo);
                 }
@@ -154,11 +156,6 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
                 default:
                     return DOTween.Sequence();
             }
-        }
-
-        public override void Dispose()
-        {
-            _target.DOKill();
         }
     }
 }

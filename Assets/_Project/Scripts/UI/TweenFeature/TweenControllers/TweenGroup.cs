@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
+using UI.TweenActions;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenControllers
+namespace TweenControllers
 {
     public class TweenGroup : TweenAction
     {
@@ -70,7 +71,6 @@ namespace _Project.Scripts.UI.TweenFeature.TweenControllers
 
             foreach (var action in _tweenActions)
             {
-                
                 seq.AppendCallback(() =>
                 {
                     var tween = action.GetTween();
@@ -78,7 +78,14 @@ namespace _Project.Scripts.UI.TweenFeature.TweenControllers
                     tween?.Play();
                 });
 
-                seq.AppendInterval(action.GetTween()?.Duration() ?? 0f);
+                if (action is MoveSequentiallyToObjectsTween)
+                {
+                    seq.AppendInterval(0f);
+                }
+                else
+                {
+                    seq.AppendInterval(action.GetTween()?.Duration() ?? 0f);
+                }
             }
 
             return seq;

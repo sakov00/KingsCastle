@@ -3,7 +3,7 @@ using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenControllers
+namespace UI.TweenControllers
 {
     public class TweenQueue : TweenAction
     {

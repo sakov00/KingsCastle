@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using _Project.Scripts._GlobalLogic;
+using _Project.Scripts.UI.TweenFeature.TweenActions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.TweenFeature.TweenActions
+namespace UI.TweenActions
 {
     public class MoveSequentiallyToObjectsTween : TweenAction
     {
@@ -89,7 +90,7 @@ namespace _Project.Scripts.UI.TweenFeature.TweenActions
 
             foreach (var corner in worldCorners)
             {
-                Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(GlobalObjects.CameraController.CurrentCamera, corner);
+                Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(GlobalObjects.Camera, corner);
 
                 if (screenPoint.x < 0 ||
                     screenPoint.y < 0 ||

@@ -18,9 +18,9 @@ namespace _Project.Scripts.UI.Info
         
         private void TooltipLookAtCamera() 
         {
-            if (GlobalObjects.CameraController != null) 
+            if (GlobalObjects.Camera != null) 
             {
-                var camXform = GlobalObjects.CameraController.transform;
+                var camXform = GlobalObjects.Camera.transform;
                 var forward = transform.position - camXform.position;
                 forward.Normalize();
                 var up = Vector3.Cross(forward, camXform.right);
